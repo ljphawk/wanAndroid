@@ -1,0 +1,83 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+    id 'kotlin-parcelize'
+}
+
+def appPackageName = project.getProperties().get("PACKAGE_NAME")
+
+android {
+    compileSdkVersion versions.compileSdk
+
+    defaultConfig {
+        applicationId appPackageName
+        minSdkVersion versions.minSdk
+        targetSdkVersion versions.targetSdk
+        versionCode app.versionCode
+        versionName app.versionName
+    }
+
+    signingConfigs {
+        release {
+            keyAlias 'qiangshengpassager'
+            keyPassword 'passager,123abc'
+            storeFile file('qiangsheng.jks')
+            storePassword 'passager,123abc'
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            zipAlignEnabled true
+            shrinkResources false
+            signingConfig signingConfigs.release
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        prev {
+            initWith(release)
+            debuggable true
+        }
+        debug {
+            minifyEnabled false
+            zipAlignEnabled false
+            shrinkResources false
+            debuggable true
+            signingConfig signingConfigs.release
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility versions.java
+        targetCompatibility versions.java
+    }
+
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+
+    lintOptions {
+        checkReleaseBuilds true
+        // Or, if you prefer, you can continue to check for errors in release builds,
+        // but continue the build even when errors are found:
+        abortOnError false
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    //module
+    projectModule.each { k, v -> implementation v }
+    androidBaseDependencies.each { k, v -> implementation v }
+    lifecycleDependencies.each { k, v -> implementation v }
+    googleDependencies.each { k, v -> implementation v }
+    //第三方库的依赖库和注解库
+    thirdDependencies.each { k, v -> implementation v }
+    thirdDependenciesKapt.each { k, v -> kapt v }
+}

@@ -1,0 +1,93 @@
+ext {
+    //app相关的信息
+    app = [
+            versionCode: 1,
+            versionName: "1.0"
+    ]
+
+    //sdk、依赖或者插件等版本号
+    versions = [
+            java             : JavaVersion.VERSION_1_8,
+            compileSdk       : 31,
+            minSdk           : 21,
+            targetSdk        : 28,
+            kotlin           : "1.7.0",
+            android_ktx      : "1.4.0",
+            lifecycle_version: "2.4.0",
+            hilt_version     : "2.42",
+            glide_version    : "4.13.2",
+            viewbinding_ktx  : "2.0.6"
+    ]
+
+    projectModule = [
+            lib_base       : project(":lib_base"),
+            lib_respository: project(":lib_respository"),
+            lib_dialog     : project(":lib_dialog"),
+            lib_utils      : project(":lib_utils"),
+    ]
+
+    androidBaseDependencies = [
+            core_ktx    : "androidx.core:core-ktx:${versions.kotlin}",
+            appcompat   : "androidx.appcompat:appcompat:${versions.android_ktx}",
+            activity_ktx: "androidx.activity:activity-ktx:${versions.android_ktx}",
+            fragment_ktx: "androidx.fragment:fragment-ktx:${versions.android_ktx}",
+    ]
+
+    lifecycleDependencies = [
+            lifecycle_livedata_ktx : "androidx.lifecycle:lifecycle-livedata-ktx:${versions.lifecycle_version}",
+            lifecycle_viewmodel_ktx: "androidx.lifecycle:lifecycle-viewmodel-ktx:${versions.lifecycle_version}",
+            lifecycle_runtime_ktx  : "androidx.lifecycle:lifecycle-runtime-ktx:${versions.lifecycle_version}",
+    ]
+
+    googleDependencies = [
+            constraintlayout: "androidx.constraintlayout:constraintlayout:2.0.4",
+            recyclerview    : "androidx.recyclerview:recyclerview:1.2.0",
+            material        : "com.google.android.material:material:1.4.0"
+    ]
+
+    networkDependencies = [
+            okhttp3            : "com.squareup.okhttp3:okhttp:4.9.0",
+            logging_interceptor: "com.squareup.okhttp3:logging-interceptor:4.9.0",
+            retrofit           : "com.squareup.retrofit2:retrofit:2.9.0",
+            gson               : "com.squareup.retrofit2:converter-gson:2.9.0",
+            mmkv               : "com.tencent:mmkv-static:1.2.10",
+            stetho             : "com.facebook.stetho:stetho:1.6.0",
+            stetho_okhttp      : "com.facebook.stetho:stetho-okhttp3:1.6.0",
+    ]
+
+    //依赖引入
+    thirdDependencies = [
+            //https://github.com/scwang90/SmartRefreshLayout
+            smartRefreshLayout           : "io.github.scwang90:refresh-layout-kernel:2.0.5",
+            smartRefreshHeader           : "io.github.scwang90:refresh-header-classics:2.0.5",
+            //https://github.com/JessYanCoding/AndroidAutoSize
+            autosize                     : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
+            //https://github.com/orhanobut/logger
+            logger                       : "com.orhanobut:logger:2.2.0",
+            //https://github.com/greenrobot/EventBus
+            eventBus                     : "org.greenrobot:eventbus:3.3.1",
+            //https://github.com/guolindev/PermissionX
+            permissionX                  : "com.guolindev.permissionx:permissionx:1.6.4",
+            //https://github.com/guolindev/LitePal
+            guolindev_litepal            : "org.litepal.guolindev:core:3.2.2",
+            //https://github.com/bumptech/glide
+            glide                        : "com.github.bumptech.glide:glide:${versions.glide_version}",
+            glide_transformations        : "jp.wasabeef:glide-transformations:4.3.0",
+            //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
+            baseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
+            //https://github.com/fondesa/recycler-view-divider
+            recycler_view_divider        : "com.github.fondesa:recycler-view-divider:3.5.0",
+            lottie                       : "com.airbnb.android:lottie:5.2.0",
+            immersionbar                 : "com.geyifeng.immersionbar:immersionbar:3.2.2"
+    ]
+
+    //https://github.com/DylanCaiCoding/ViewBindingKTX
+    viewBindKtx = [
+            ktx : "com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-ktx:${versions.viewbinding_ktx}",
+            base: "com.github.DylanCaiCoding.ViewBindingKTX:viewbinding-base:${versions.viewbinding_ktx}",
+    ]
+
+    thirdDependenciesKapt = [
+            glide_compiler: "com.github.bumptech.glide:compiler:${versions.glide_version}",
+    ]
+}

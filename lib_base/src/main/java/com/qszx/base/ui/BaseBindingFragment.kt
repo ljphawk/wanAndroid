@@ -1,0 +1,64 @@
+package com.qszx.base.ui
+
+import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.viewbinding.ViewBinding
+import com.dylanc.viewbinding.base.ViewBindingUtil
+import com.qszx.base.dialog.LoadingDialog
+import com.qszx.utils.CommUtils
+
+
+/*
+ *@创建者       L_jp
+ *@创建时间     6/2/21 11:47 AM.
+ *@描述
+ */
+abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView  {
+
+    private var _binding: VB? = null
+    val binding: VB get() = _binding!!
+    private val loadingDialog by lazy { LoadingDialog.Builder(requireContext()) }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        initData(view, savedInstanceState)
+    }
+
+    protected abstract fun initData(view: View, savedInstanceState: Bundle?)
+
+    override fun showLoading(loadingText: String) {
+        if (!loadingDialog.isCreated()) {
+            loadingDialog.create()
+        }
+        loadingDialog.setMessage(loadingText)
+        if (!loadingDialog.isShowing()) {
+            loadingDialog.show()
+        }
+    }
+
+    override fun dismissLoading() {
+        loadingDialog.dismiss()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+
+        requireActivity()?.let {
+            CommUtils.hideSoftKeyBoard(it)
+        }
+        _binding = null
+
+    }
+}

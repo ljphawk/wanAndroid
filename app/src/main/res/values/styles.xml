@@ -1,0 +1,24 @@
+<resources>
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimary</item>
+        <item name="colorAccent">@color/colorPrimary</item>
+        <item name="android:windowBackground">@color/white</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/c_2C364E</item>
+    </style>
+
+
+    <style name="SplashAppTheme" parent="AppTheme">
+        <!--        <item name="android:windowBackground">@drawable/drawable_splash_bg</item>-->
+        <item name="android:windowBackground">@color/transparent</item>
+        <item name="android:windowFullscreen">true</item>
+        <item name="android:colorBackgroundCacheHint">@null</item>
+        <item name="android:windowShowWallpaper">false</item>
+    </style>
+
+
+
+</resources>
