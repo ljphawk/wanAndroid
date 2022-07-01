@@ -9,17 +9,19 @@
     app:layoutDescription="@xml/layout_left_mine_scene"
     tools:background="@color/c_2C364E">
 
-
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.constraintlayout.motion.widget.MotionLayout
         android:id="@+id/cl_avatar"
         android:layout_width="match_parent"
         android:layout_height="180dp"
-        android:layout_marginStart="24dp">
+        app:layoutDescription="@xml/layout_left_mine_xml_cl_avatar_scene"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:layout_editor_absoluteX="411dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/civ_avatar"
             android:layout_width="80dp"
             android:layout_height="80dp"
+            android:layout_marginStart="24dp"
             android:src="@mipmap/ic_launcher"
             app:civ_border_color="@color/white"
             app:civ_border_width="2dp"
@@ -58,7 +60,7 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tv_nike_name" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.motion.widget.MotionLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
