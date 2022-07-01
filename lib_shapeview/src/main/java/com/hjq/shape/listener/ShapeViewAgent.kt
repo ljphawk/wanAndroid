@@ -13,7 +13,9 @@ interface ShapeViewAgent {
 
     fun getShapeDrawableBuilder(): ShapeDrawableBuilder
 
-    fun getTextColorBuilder(): TextColorBuilder
+    fun getTextColorBuilder(): TextColorBuilder?{
+        return null
+    }
 
     fun setSolidColor(color: Int) {
         getShapeDrawableBuilder().solidColor = color

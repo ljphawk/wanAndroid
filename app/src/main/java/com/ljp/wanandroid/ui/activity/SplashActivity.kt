@@ -16,9 +16,8 @@ import com.qszx.utils.extensions.startActivity
 class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
     override fun initData(savedInstanceState: Bundle?) {
-        initViewListener()
-//        startActivity<LoginActivity>()
-//        finish()
+//        initViewListener()
+        lottieStatusChange(1.0f)
     }
 
     override fun fitsSystemWindowsStatusBarColor(): Int {

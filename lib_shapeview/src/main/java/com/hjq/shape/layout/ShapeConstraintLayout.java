@@ -8,6 +8,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 
 import com.hjq.shape.R;
 import com.hjq.shape.builder.ShapeDrawableBuilder;
+import com.hjq.shape.listener.ShapeViewAgent;
 import com.hjq.shape.styleable.ShapeConstraintLayoutStyleable;
 
 /**
@@ -16,7 +17,7 @@ import com.hjq.shape.styleable.ShapeConstraintLayoutStyleable;
  *    time   : 2021/07/17
  *    desc   : 支持直接定义 Shape 背景的 ConstraintLayout
  */
-public class ShapeConstraintLayout extends ConstraintLayout {
+public class ShapeConstraintLayout extends ConstraintLayout implements ShapeViewAgent {
 
     private static final ShapeConstraintLayoutStyleable STYLEABLE = new ShapeConstraintLayoutStyleable();
 
