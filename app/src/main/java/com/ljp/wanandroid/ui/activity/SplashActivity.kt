@@ -3,7 +3,7 @@ package com.ljp.wanandroid.ui.activity
 import android.os.Bundle
 import com.ljp.wanandroid.databinding.ActivitySplashBinding
 import com.ljp.wanandroid.preference.UserPreference
-import com.ljp.wanandroid.utils.LOG
+import com.ljp.wanandroid.ui.activity.login.LoginActivity
 import com.qszx.base.ui.BaseBindingActivity
 import com.qszx.utils.extensions.startActivity
 
@@ -16,7 +16,9 @@ import com.qszx.utils.extensions.startActivity
 class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
 
     override fun initData(savedInstanceState: Bundle?) {
-        initViewListener()
+//        initViewListener()
+        startActivity<LoginActivity>()
+        finish()
     }
 
     override fun fitsSystemWindowsStatusBarColor(): Int {

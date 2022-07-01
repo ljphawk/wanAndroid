@@ -1,0 +1,12 @@
+apply from: "../basic.gradle"
+android{
+    kotlinOptions {
+        freeCompilerArgs += [
+                '-Xjvm-default=all'
+        ]
+    }
+}
+dependencies {
+    implementation googleDependencies.constraintlayout
+    implementation googleDependencies.recyclerview
+}

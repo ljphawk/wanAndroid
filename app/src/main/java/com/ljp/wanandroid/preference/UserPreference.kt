@@ -1,5 +1,7 @@
 package com.ljp.wanandroid.preference
 
+import com.ljp.wanandroid.model.UserBean
+import com.qszx.respository.extensions.parcelableValue
 import com.qszx.utils.extensions.contentHasValue
 import com.qszx.respository.extensions.stringValue
 import com.qszx.respository.preference.BasePreference
@@ -19,12 +21,22 @@ object UserPreference : BasePreference() {
         return MMKV.mmkvWithID("user")!!
     }
 
-    var userId by stringValue()
-
-    var token by stringValue()
 
     fun isLogin(): Boolean {
-        return token.contentHasValue()
+        return userLoginPassword.contentHasValue()
+    }
+
+    var userInfo by parcelableValue<UserBean>()
+
+    var userLoginName by stringValue()
+
+    var userLoginPassword by stringValue()
+
+
+    fun setUserInfoData(info: UserBean, pwd: String) {
+        userInfo = info
+        userLoginName = info.username
+        userLoginPassword = pwd
     }
 
     fun logout() {

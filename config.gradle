@@ -24,6 +24,8 @@ ext {
             lib_respository: project(":lib_respository"),
             lib_dialog     : project(":lib_dialog"),
             lib_utils      : project(":lib_utils"),
+            // Shape 框架：https://github.com/getActivity/ShapeView
+            lib_shapeview      : project(":lib_shapeview"),
     ]
 
     androidBaseDependencies = [
@@ -40,7 +42,7 @@ ext {
     ]
 
     googleDependencies = [
-            constraintlayout: "androidx.constraintlayout:constraintlayout:2.0.4",
+            constraintlayout: "androidx.constraintlayout:constraintlayout:2.1.4",
             recyclerview    : "androidx.recyclerview:recyclerview:1.2.0",
             material        : "com.google.android.material:material:1.4.0"
     ]
@@ -78,7 +80,7 @@ ext {
             //https://github.com/fondesa/recycler-view-divider
             recycler_view_divider        : "com.github.fondesa:recycler-view-divider:3.5.0",
             lottie                       : "com.airbnb.android:lottie:5.2.0",
-            immersionbar                 : "com.geyifeng.immersionbar:immersionbar:3.2.2"
+            immersionbar                 : "com.geyifeng.immersionbar:immersionbar:3.2.2",
     ]
 
     //https://github.com/DylanCaiCoding/ViewBindingKTX

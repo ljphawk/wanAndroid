@@ -40,7 +40,7 @@ class TestActivity : BaseBindingActivity<ActivityTestBinding>() {
         }
 
         binding.btError.noQuickClick {
-            netError()
+//            netError()
         }
 
     }
@@ -56,16 +56,16 @@ class TestActivity : BaseBindingActivity<ActivityTestBinding>() {
         }
     }
 
-    private fun netError() {
-        launchAndCollect({ testVm.getNetDataError() }) {
-            onSuccess = {
-                binding.tvContent.text = it.toString()
-            }
-            onFailed = { _, errorMsg ->
-                binding.tvContent.text = errorMsg
-            }
-        }
-    }
+//    private fun netError() {
+//        launchAndCollect({ testVm.getNetDataError() }) {
+//            onSuccess = {
+//                binding.tvContent.text = it.toString()
+//            }
+//            onFailed = { _, errorMsg ->
+//                binding.tvContent.text = errorMsg
+//            }
+//        }
+//    }
 
 
 }

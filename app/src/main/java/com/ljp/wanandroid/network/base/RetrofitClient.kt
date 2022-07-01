@@ -1,10 +1,9 @@
 package com.ljp.wanandroid.network.base
 
 import com.facebook.stetho.okhttp3.StethoInterceptor
-import com.qszx.respository.network.BaseRetrofitClient
 import com.ljp.wanandroid.BuildConfig
-import com.ljp.wanandroid.commonkey.EnvConstant
 import com.ljp.wanandroid.network.interceptor.HeaderInterceptor
+import com.qszx.respository.network.BaseRetrofitClient
 import okhttp3.OkHttpClient
 
 
@@ -26,6 +25,6 @@ object RetrofitClient : BaseRetrofitClient() {
     }
 
     override fun baseUrl(): String {
-        return EnvConstant.getApiHost()
+        return "https://www.wanandroid.com"
     }
 }

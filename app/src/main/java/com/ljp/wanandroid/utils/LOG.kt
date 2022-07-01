@@ -10,7 +10,7 @@ object LOG {
         val logFormat = PrettyFormatStrategy.newBuilder()
             .methodCount(0)
             .methodOffset(5)
-            .tag("wanAndroid")
+            .tag("ljp")
             .showThreadInfo(false)
             .build()
 

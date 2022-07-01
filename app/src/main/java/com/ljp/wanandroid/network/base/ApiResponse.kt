@@ -6,16 +6,15 @@ import com.qszx.respository.network.BaseApiResponse
 class ApiResponse<T> : BaseApiResponse<T>() {
 
     private val data: T? = null
-    private val error_code: Int? = null
-    private val message: String? = null
-    private val result: Int? = null
+    private val errorCode: Int? = null
+    private val errorMsg: String? = null
 
     override fun errorCode(): Int? {
-        return error_code
+        return errorCode
     }
 
     override fun errorMessage(): String? {
-        return message
+        return errorMsg
     }
 
     override fun data(): T? {
@@ -23,7 +22,7 @@ class ApiResponse<T> : BaseApiResponse<T>() {
     }
 
     override fun isSuccessful(): Boolean {
-        return result == 0
+        return errorCode == 0
     }
 
 }

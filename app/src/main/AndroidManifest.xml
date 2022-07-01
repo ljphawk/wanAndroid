@@ -59,7 +59,8 @@
         <activity
             android:name=".ui.activity.SplashActivity"
             android:launchMode="singleTask"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait"
+            android:theme="@style/SplashAppTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -69,7 +70,7 @@
 
 
         <activity
-            android:name=".ui.activity.LoginActivity"
+            android:name=".ui.activity.login.LoginActivity"
             android:screenOrientation="portrait" />
 
         <activity
