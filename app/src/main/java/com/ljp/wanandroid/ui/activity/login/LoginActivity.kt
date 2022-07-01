@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.LinkMovementMethod
 import android.text.method.PasswordTransformationMethod
+import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.viewModels
@@ -13,14 +14,12 @@ import com.ljp.wanandroid.databinding.ActivityLoginBinding
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setAnimStatusListener
 import com.ljp.wanandroid.preference.UserPreference
+import com.ljp.wanandroid.ui.activity.MainActivity
 import com.ljp.wanandroid.utils.SpanUtils
 import com.qszx.base.ui.BaseBindingActivity
 import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.utils.CommUtils
-import com.qszx.utils.extensions.contentHasValue
-import com.qszx.utils.extensions.getContent
-import com.qszx.utils.extensions.noQuickClick
-import com.qszx.utils.extensions.show
+import com.qszx.utils.extensions.*
 import com.qszx.utils.showToast
 
 
@@ -73,7 +72,6 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
                 requestLogin()
             }
         }
-//        binding.btLogin.shapeDrawableBuilder.setSolidColor()
     }
 
     private fun requestLogin() {
@@ -87,9 +85,8 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
             onSuccess = { data ->
                 data?.let {
                     UserPreference.setUserInfoData(it, password)
-//                    startActivity<MainActivity>()
-//                    finish()
-                    showToast("登录成功~")
+                    startActivity<MainActivity>()
+                    finish()
                 }
             }
         }
@@ -118,7 +115,6 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
         }
     }
 
-
     private fun setPwdShowAndHide(imageView: ImageView, editText: EditText) {
         imageView.setOnClickListener {
             val isActivated = imageView.isActivated
@@ -135,7 +131,7 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
     private fun setRegisterText() {
         binding.tvRegister.movementMethod = LinkMovementMethod.getInstance()
         val color = ContextCompat.getColor(this, R.color.colorPrimary)
-        binding.tvRegister.text = SpanUtils().append(if (isRegisterView) "想起账号了? " else "还没有账号? ")
+        binding.tvRegister.text = SpanUtils().append(if (isRegisterView) "我已有账号! " else "还没有账号? ")
             .append(if (isRegisterView) "返回登录" else "立即注册")
             .setForegroundColor(color)
             .setClickSpan(color, true) {
@@ -147,9 +143,11 @@ class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
         if (isRegisterView) {
             binding.motionLayout.transitionToStart()
             binding.btLogin.text = "登录"
+            binding.tvWelcome.text = "欢迎登录"
         } else {
             binding.motionLayout.transitionToEnd()
             binding.btLogin.text = "注册"
+            binding.tvWelcome.text = "欢迎注册"
         }
         isRegisterView = !isRegisterView
         setRegisterText()

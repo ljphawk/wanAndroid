@@ -9,7 +9,7 @@ ext {
     versions = [
             java             : JavaVersion.VERSION_1_8,
             compileSdk       : 31,
-            minSdk           : 21,
+            minSdk           : 23,
             targetSdk        : 28,
             kotlin           : "1.7.0",
             android_ktx      : "1.4.0",
@@ -81,6 +81,8 @@ ext {
             recycler_view_divider        : "com.github.fondesa:recycler-view-divider:3.5.0",
             lottie                       : "com.airbnb.android:lottie:5.2.0",
             immersionbar                 : "com.geyifeng.immersionbar:immersionbar:3.2.2",
+            //https://github.com/florent37/ShapeOfView
+            shapeofview                 : "io.github.florent37:shapeofview:1.4.7",
     ]
 
     //https://github.com/DylanCaiCoding/ViewBindingKTX
