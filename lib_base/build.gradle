@@ -4,6 +4,7 @@ dependencies {
     compileOnly projectModule.lib_dialog
     compileOnly projectModule.lib_utils
     viewBindKtx.each { k, v -> api v }
+    navigationDependencies.each { k, v -> api v }
     implementation googleDependencies.recyclerview
     implementation thirdDependencies.baseRecyclerViewAdapterHelper
     implementation thirdDependencies.immersionbar

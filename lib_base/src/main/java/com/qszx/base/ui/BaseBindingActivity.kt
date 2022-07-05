@@ -80,7 +80,7 @@ abstract class BaseBindingActivity<VB : ViewBinding> : AppCompatActivity(), IUiV
     }
 
     protected open fun fitsSystemWindowsStatusBarColor(): Int {
-        return R.color.white
+        return -1
     }
 
     override fun onDestroy() {

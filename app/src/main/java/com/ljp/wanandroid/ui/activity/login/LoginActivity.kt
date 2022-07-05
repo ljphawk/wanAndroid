@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.LinkMovementMethod
 import android.text.method.PasswordTransformationMethod
-import android.view.View
 import android.widget.EditText
 import android.widget.ImageView
 import androidx.activity.viewModels
@@ -14,7 +13,7 @@ import com.ljp.wanandroid.databinding.ActivityLoginBinding
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setAnimStatusListener
 import com.ljp.wanandroid.preference.UserPreference
-import com.ljp.wanandroid.ui.activity.MainActivity
+import com.ljp.wanandroid.ui.activity.main.MainActivity
 import com.ljp.wanandroid.utils.SpanUtils
 import com.qszx.base.ui.BaseBindingActivity
 import com.qszx.respository.extensions.launchAndCollect

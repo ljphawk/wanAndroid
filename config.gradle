@@ -27,6 +27,8 @@ ext {
             lib_utils      : project(":lib_utils"),
             // Shape 框架：https://github.com/getActivity/ShapeView
             lib_shapeview  : project(":lib_shapeview"),
+            //https://github.com/H07000223/FlycoTabLayout
+            lib_flycoTabLayout  : project(":lib_flycoTabLayout"),
     ]
 
     androidBaseDependencies = [

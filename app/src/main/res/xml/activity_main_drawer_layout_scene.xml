@@ -49,7 +49,7 @@
         </Constraint>
 
         <Constraint
-            android:id="@+id/clMainContent"
+            android:id="@+id/cl_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:scaleX="1"
@@ -107,7 +107,7 @@
         </Constraint>
 
         <Constraint
-            android:id="@+id/clMainContent"
+            android:id="@+id/cl_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:rotation="7.5"

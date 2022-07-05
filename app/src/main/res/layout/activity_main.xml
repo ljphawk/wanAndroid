@@ -4,61 +4,12 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.ljp.wanandroid.widget.SpeedDrawerLayout
-        android:id="@+id/drawerLayout"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/nav_host_fragment"
+        android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.motion.widget.MotionLayout
-            android:id="@+id/motionLayout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/transparent"
-            app:layoutDescription="@xml/activity_main_drawer_layout_scene">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/clLayout1"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/colorPrimary" />
-
-            <com.hjq.shape.layout.ShapeConstraintLayout
-                android:id="@+id/clLayout2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#66ffffff" />
-
-            <com.hjq.shape.layout.ShapeConstraintLayout
-                android:id="@+id/clLayout3"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="#99ffffff" />
-
-            <com.hjq.shape.layout.ShapeConstraintLayout
-                android:id="@+id/clMainContent"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:background="@color/white">
-
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="打开或关闭"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </com.hjq.shape.layout.ShapeConstraintLayout>
-
-        </androidx.constraintlayout.motion.widget.MotionLayout>
-
-        <com.ljp.wanandroid.widget.LeftMineLayout
-            android:id="@+id/mineLayout"
-            android:background="@color/transparent"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start" />
-
-    </com.ljp.wanandroid.widget.SpeedDrawerLayout>
+        android:layout_height="match_parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/nav_main" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -76,7 +76,6 @@ dependencies {
     projectModule.each { k, v -> implementation v }
     androidBaseDependencies.each { k, v -> implementation v }
     lifecycleDependencies.each { k, v -> implementation v }
-    navigationDependencies.each { k, v -> implementation v }
     googleDependencies.each { k, v -> implementation v }
     //第三方库的依赖库和注解库
     thirdDependencies.each { k, v -> implementation v }

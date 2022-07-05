@@ -1,0 +1,5 @@
+apply from: "../basic.gradle"
+
+dependencies {
+    implementation googleDependencies.material
+}
