@@ -52,14 +52,12 @@
             android:id="@+id/cl_main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:padding="0dp"
             android:scaleX="1"
             android:scaleY="1">
             <CustomAttribute
                 motion:attributeName="radius"
                 motion:customFloatValue="0" />
-            <CustomAttribute
-                motion:attributeName="solidColor"
-                motion:customColorValue="@color/white" />
         </Constraint>
 
     </ConstraintSet>
@@ -112,14 +110,13 @@
             android:layout_height="match_parent"
             android:rotation="7.5"
             android:scaleX="0.8"
+            android:padding="20dp"
             android:scaleY="0.8"
             android:translationX="200dp">
+
             <CustomAttribute
                 motion:attributeName="radius"
                 motion:customFloatValue="20" />
-            <CustomAttribute
-                motion:attributeName="solidColor"
-                motion:customColorValue="@color/white" />
         </Constraint>
 
     </ConstraintSet>

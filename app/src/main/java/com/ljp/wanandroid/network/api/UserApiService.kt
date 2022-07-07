@@ -41,8 +41,4 @@ interface UserApiService {
     @GET("/user/logout/json")
     suspend fun logout(): ApiResponse<Any>
 
-
-    suspend fun getWxarticleList(): ApiResponse<MutableList<WxArticleBean>>
-
-
 }

@@ -5,8 +5,10 @@ import com.ljp.wanandroid.network.base.ApiResponse
 import com.ljp.wanandroid.network.repository.UserRepository
 import com.qszx.base.ui.BaseViewModel
 import com.qszx.respository.network.BaseApiResponse
+import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
 
 /*
@@ -14,11 +16,8 @@ import kotlinx.coroutines.flow.asStateFlow
  *@创建时间     2022/6/13 11:25.
  *@描述
  */
-class LoginViewModel : BaseViewModel() {
-
-    private val userRepository by lazy {
-        UserRepository()
-    }
+@HiltViewModel
+class LoginViewModel @Inject constructor(private val userRepository: UserRepository): BaseViewModel() {
 
 
     /**

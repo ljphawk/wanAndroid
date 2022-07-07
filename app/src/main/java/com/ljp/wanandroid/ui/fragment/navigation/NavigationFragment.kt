@@ -1,6 +1,7 @@
 package com.ljp.wanandroid.ui.fragment.navigation
 
 import com.ljp.wanandroid.databinding.FragmentNavigationBinding
+import com.ljp.wanandroid.utils.LOG
 import com.qszx.base.ui.BaseLazyBindingFragment
 
 

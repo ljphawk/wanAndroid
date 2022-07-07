@@ -161,7 +161,7 @@ class ImageRequestListener(
         isFirstResource: Boolean
     ): Boolean {
         uiThread {
-            listener.onLoadingFailed(imageUrl, null, null)
+            listener.onLoadingFailed(imageUrl, imageView, e?.cause)
         }
         return false
     }

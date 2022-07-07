@@ -1,13 +1,12 @@
 package com.ljp.wanandroid.ui.activity.main
 
 import android.os.Bundle
-import android.view.View
-import com.gyf.immersionbar.ImmersionBar
 import com.ljp.wanandroid.R
-import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.ActivityMainBinding
 import com.qszx.base.ui.RouterActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : RouterActivity<ActivityMainBinding>() {
 
     override fun initData(savedInstanceState: Bundle?) {

@@ -39,9 +39,8 @@ class LeftMineLayout(context: Context, attributeSet: AttributeSet) :
         val userInfo = UserPreference.userInfo
         binding.tvNikeName.text = userInfo?.nickname
         binding.tvUserName.text = userInfo?.username
-        binding.civAvatar.loadImage("https://api.yimian.xyz/img?type=head&time=${DateUtils.getCurrentTimestamp()}")
+        binding.civAvatar.loadImage(UserPreference.getUserAvatarUrl())
     }
-
 
     private fun initRecyclerView() {
         binding.recyclerView.linear().setup {

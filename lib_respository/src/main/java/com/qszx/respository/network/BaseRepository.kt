@@ -1,7 +1,6 @@
 package com.qszx.respository.network
 
 
-
 /*
  *@创建者       L_jp
  *@创建时间     2022/6/13 13:14.
@@ -15,6 +14,7 @@ open class BaseRepository {
         }.onSuccess { data: BaseApiResponse<T> ->
             return handleHttpOk(data)
         }.onFailure { e ->
+            e.printStackTrace()
             return handleHttpError(e)
         }
         return ApiEmptyResponse()

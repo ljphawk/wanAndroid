@@ -13,8 +13,8 @@ import com.dylanc.viewbinding.base.ViewBindingUtil
  *@创建时间     2022/6/20 16:44.
  *@描述
  */
-abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(layoutResId: Int = -1) :
-    BaseQuickAdapter<T, BaseBindingQuickAdapter.BaseBindingHolder>(layoutResId) {
+abstract class BaseBindingQuickAdapter<T, VB : ViewBinding>(layoutResId: Int = -1, data: MutableList<T>? = null) :
+    BaseQuickAdapter<T, BaseBindingQuickAdapter.BaseBindingHolder>(layoutResId, data) {
 
     override fun onCreateDefViewHolder(parent: ViewGroup, viewType: Int) =
         BaseBindingHolder(ViewBindingUtil.inflateWithGeneric<VB>(this, parent))

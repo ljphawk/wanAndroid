@@ -20,6 +20,7 @@ import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.utils.CommUtils
 import com.qszx.utils.extensions.*
 import com.qszx.utils.showToast
+import dagger.hilt.android.AndroidEntryPoint
 
 
 /*
@@ -27,6 +28,7 @@ import com.qszx.utils.showToast
  *@创建时间     2022/6/29 10:20.
  *@描述
  */
+@AndroidEntryPoint
 class LoginActivity : BaseBindingActivity<ActivityLoginBinding>() {
 
     private val loginViewModel by viewModels<LoginViewModel>()

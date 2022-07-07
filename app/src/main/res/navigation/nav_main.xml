@@ -9,5 +9,7 @@
         android:id="@+id/mainFragment"
         android:name="com.ljp.wanandroid.ui.fragment.main.MainFragment"
         tools:layout="@layout/fragment_main"
-        android:label="MainFragment" />
+        android:label="MainFragment" >
+    </fragment>
+
 </navigation>

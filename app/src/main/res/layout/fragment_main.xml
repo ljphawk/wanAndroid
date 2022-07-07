@@ -30,58 +30,18 @@
             android:layout_height="match_parent"
             android:background="#99ffffff" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <com.hjq.shape.layout.ShapeConstraintLayout
             android:id="@+id/cl_main"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/cl_search"
-                android:layout_width="match_parent"
-                android:layout_height="?actionBarSize"
-                android:background="@color/colorPrimary"
-                android:paddingHorizontal="12dp"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/civ_avatar"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:src="@mipmap/ic_launcher"
-                    app:civ_border_color="@color/white"
-                    app:civ_border_width="1dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toLeftOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:layout_width="0dp"
-                    android:layout_height="30dp"
-                    android:layout_marginHorizontal="18dp"
-                    android:background="@drawable/shape_login_input_bg"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintLeft_toRightOf="@id/civ_avatar"
-                    app:layout_constraintRight_toLeftOf="@id/iv_add"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <ImageView
-                    android:id="@+id/iv_add"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@android:drawable/ic_input_add"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintRight_toRightOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_height="match_parent"
+            app:shape_solidColor="@color/white">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:id="@+id/viewpager2"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 app:layout_constraintBottom_toTopOf="@id/tab_layout"
-                app:layout_constraintTop_toBottomOf="@id/cl_search" />
-
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.flyco.tablayout.CommonTabLayout
                 android:id="@+id/tab_layout"
@@ -101,7 +61,7 @@
                 app:tl_textSelectColor="@color/colorPrimary"
                 app:tl_textUnselectColor="@color/c_2C364E" />
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        </com.hjq.shape.layout.ShapeConstraintLayout>
 
     </androidx.constraintlayout.motion.widget.MotionLayout>
 

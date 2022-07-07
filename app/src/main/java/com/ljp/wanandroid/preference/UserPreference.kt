@@ -1,5 +1,6 @@
 package com.ljp.wanandroid.preference
 
+import com.ljp.wanandroid.constant.UrlConstant
 import com.ljp.wanandroid.model.UserBean
 import com.qszx.respository.extensions.parcelableValue
 import com.qszx.utils.extensions.contentHasValue
@@ -37,6 +38,10 @@ object UserPreference : BasePreference() {
         userInfo = info
         userLoginName = info.username
         userLoginPassword = pwd
+    }
+
+    fun getUserAvatarUrl(): String {
+        return UrlConstant.getAvatarUrl("${userInfo?.id}")
     }
 
     fun logout() {

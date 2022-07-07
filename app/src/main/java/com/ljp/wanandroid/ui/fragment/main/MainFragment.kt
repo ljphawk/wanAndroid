@@ -3,17 +3,13 @@ package com.ljp.wanandroid.ui.fragment.main
 import android.graphics.Color
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.GravityCompat
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import com.flyco.tablayout.listener.OnTabSelectListener
-import com.gyf.immersionbar.ImmersionBar
-import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentMainBinding
 import com.ljp.wanandroid.ui.activity.main.MainViewModel
 import com.ljp.wanandroid.widget.SpeedDrawerLayout
 import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.utils.extensions.noQuickClick
 
 
 /*
@@ -23,11 +19,7 @@ import com.qszx.utils.extensions.noQuickClick
  */
 class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
 
-    private val mainViewModel by activityViewModels<MainViewModel>()
-
-    override fun immersionBarView(): View {
-        return binding.clSearch
-    }
+    private val mainViewModel by viewModels<MainViewModel>()
 
     override fun initData(view: View, savedInstanceState: Bundle?) {
         initViewListener()
@@ -36,13 +28,6 @@ class MainFragment : BaseBindingFragment<FragmentMainBinding>() {
     private fun initViewListener() {
         initDrawerLayout()
         initTabLayoutAndViewPage2()
-        binding.civAvatar.noQuickClick {
-            if (binding.drawerLayout.isDrawerOpen(GravityCompat.START)) {
-                binding.drawerLayout.closeDrawer(GravityCompat.START)
-            } else {
-                binding.drawerLayout.openDrawer(GravityCompat.START)
-            }
-        }
     }
 
     private fun initDrawerLayout() {

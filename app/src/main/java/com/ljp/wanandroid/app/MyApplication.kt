@@ -4,11 +4,12 @@ import android.os.Build
 import android.webkit.WebView
 import androidx.core.content.ContextCompat
 import com.facebook.stetho.Stetho
+import com.ljp.wanandroid.R
 import com.qszx.respository.app.BaseApplication
 import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.ClassicsHeader
+import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.ljp.wanandroid.R
+import dagger.hilt.android.HiltAndroidApp
 
 
 /*
@@ -16,6 +17,7 @@ import com.ljp.wanandroid.R
  *@创建时间     2022/6/9 10:38.
  *@描述
  */
+@HiltAndroidApp
 class MyApplication : BaseApplication() {
 
     override fun onCreate() {
@@ -44,7 +46,7 @@ class MyApplication : BaseApplication() {
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setPrimaryColorsId(R.color.transparent) //全局设置主题颜色
-            ClassicsHeader(context)
+            MaterialHeader(context)
         }
         //设置全局的Footer构建器
         SmartRefreshLayout.setDefaultRefreshFooterCreator { context, _ -> //指定为经典Footer，默认是 BallPulseFooter

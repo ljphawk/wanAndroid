@@ -3,6 +3,7 @@ package com.ljp.wanandroid.network.repository
 import com.qszx.respository.network.BaseRepository
 import com.ljp.wanandroid.network.api.UserApiService
 import com.ljp.wanandroid.network.base.RetrofitClient
+import javax.inject.Inject
 
 
 /*
@@ -10,11 +11,7 @@ import com.ljp.wanandroid.network.base.RetrofitClient
  *@创建时间     2020/8/4 16:25.
  *@描述
  */
-class UserRepository : BaseRepository() {
-
-    private val userApiService by lazy {
-        RetrofitClient.getApiService(UserApiService::class.java)
-    }
+class UserRepository @Inject constructor(private val userApiService: UserApiService) : BaseRepository() {
 
     /**
      * 登录
@@ -30,8 +27,5 @@ class UserRepository : BaseRepository() {
      * 退出
      */
     suspend fun logout() = executeHttp { userApiService.logout() }
-
-
-    suspend fun getWxarticleList() = executeHttp(userApiService::getWxarticleList)
 
 }
