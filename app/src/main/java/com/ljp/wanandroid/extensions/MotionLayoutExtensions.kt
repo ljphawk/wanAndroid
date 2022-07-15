@@ -27,7 +27,6 @@ fun MotionLayout.setAnimStatusListener(l: MotionLayoutListener.() -> Unit) {
         }
 
         override fun onTransitionCompleted(motionLayout: MotionLayout?, currentId: Int) {
-            LOG.d(currentId)
             if (motionLayout?.endState == currentId) {
                 //从开始到结束的动画完成
                 listener.onStartAnimCompleted.invoke()

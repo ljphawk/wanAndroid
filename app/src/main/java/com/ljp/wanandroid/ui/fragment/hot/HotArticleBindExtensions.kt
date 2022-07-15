@@ -1,6 +1,7 @@
 package com.ljp.wanandroid.ui.fragment.hot
 
-import androidx.lifecycle.Lifecycle
+import android.content.Context
+import androidx.lifecycle.LifecycleOwner
 import com.ljp.wanandroid.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
@@ -17,11 +18,15 @@ import com.qszx.utils.showToast
  *@描述
  */
 
-fun ItemHotArticleHeadViewBinding.binding(lifecycle: Lifecycle, listData: MutableList<HomeBannerBean>) {
+fun ItemHotArticleHeadViewBinding.binding(
+    context: Context,
+    lifecycle: LifecycleOwner,
+    listData: MutableList<HomeBannerBean>
+) {
     if (bannerView.adapter == null) {
         bannerView.apply {
             setAdapter(HomeBannerAdapter())
-            setLifecycleRegistry(lifecycle)
+            setLifecycleRegistry(lifecycle.lifecycle)
             setOnPageClickListener { _, position ->
                 val data = bannerView.data[position] as HomeBannerBean?
                 context.showToast(data?.url)

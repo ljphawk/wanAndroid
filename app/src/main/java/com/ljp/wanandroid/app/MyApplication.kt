@@ -3,6 +3,7 @@ package com.ljp.wanandroid.app
 import android.os.Build
 import android.webkit.WebView
 import androidx.core.content.ContextCompat
+import com.drake.statelayout.StateConfig
 import com.facebook.stetho.Stetho
 import com.ljp.wanandroid.R
 import com.qszx.respository.app.BaseApplication
@@ -43,6 +44,18 @@ class MyApplication : BaseApplication() {
     }
 
     private fun initSmartRefresh() {
+        StateConfig.apply {
+            emptyLayout = R.layout.layout_empty
+            errorLayout = R.layout.layout_error
+            loadingLayout = R.layout.layout_loading
+
+            setRetryIds(R.id.msg)
+
+            onLoading {
+                // 此生命周期可以拿到LoadingLayout创建的视图对象, 可以进行动画设置或点击事件.
+            }
+        }
+
         //设置全局的Header构建器
         SmartRefreshLayout.setDefaultRefreshHeaderCreator { context, layout ->
             layout.setPrimaryColorsId(R.color.transparent) //全局设置主题颜色
