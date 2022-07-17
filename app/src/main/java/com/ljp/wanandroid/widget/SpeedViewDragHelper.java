@@ -23,6 +23,8 @@ import androidx.annotation.Px;
 import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
 
+import com.ljp.wanandroid.utils.LOG;
+
 import java.util.Arrays;
 
 /**
@@ -97,8 +99,8 @@ public class SpeedViewDragHelper {
 
     private static final int EDGE_SIZE = 20; // dp
 
-    private static final int BASE_SETTLE_DURATION = 1200; // ms
-    private static final int MAX_SETTLE_DURATION = 1200; // ms
+    private static final int BASE_SETTLE_DURATION = 1500; // ms
+    private static final int MAX_SETTLE_DURATION = 1500; // ms
 
     // Current drag state; idle, dragging or settling
     private int mDragState;
@@ -635,7 +637,7 @@ public class SpeedViewDragHelper {
         final float distanceRatio = Math.min(1f, (float) Math.abs(delta) / width);
         final float distance = halfWidth + halfWidth
                 * distanceInfluenceForSnapDuration(distanceRatio);
-
+        LOG.d("===1 velocity= ",velocity);
         int duration;
         velocity = Math.abs(velocity);
         if (velocity > 0) {
@@ -644,6 +646,9 @@ public class SpeedViewDragHelper {
             final float range = (float) Math.abs(delta) / motionRange;
             duration = (int) ((range + 1) * BASE_SETTLE_DURATION);
         }
+        LOG.d("===1 duration1= ",duration);
+        LOG.d("===1 duration2= ",Math.min(duration, MAX_SETTLE_DURATION));
+
         return Math.min(duration, MAX_SETTLE_DURATION);
     }
 
