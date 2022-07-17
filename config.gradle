@@ -68,9 +68,6 @@ ext {
 
     //依赖引入
     thirdDependencies = [
-            //https://github.com/scwang90/SmartRefreshLayout
-//            smartRefreshLayout           : "io.github.scwang90:refresh-layout-kernel:2.0.5",
-//            smartRefreshHeader           : "io.github.scwang90:refresh-header-classics:2.0.5",
             //https://github.com/JessYanCoding/AndroidAutoSize
             autosize                     : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
             //https://github.com/orhanobut/logger

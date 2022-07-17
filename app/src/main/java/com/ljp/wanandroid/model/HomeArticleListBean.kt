@@ -9,7 +9,7 @@ import com.qszx.utils.extensions.contentHasValue
  *@描述
  */
 data class HomeArticleListBean(
-    val datas: MutableList<HomeArticleBean>,
+    var datas: MutableList<HomeArticleBean>,
     val curPage: Int,
     val pageCount: Int,
     val over: Boolean,

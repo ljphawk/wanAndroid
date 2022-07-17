@@ -59,7 +59,7 @@
         android:ellipsize="end"
         android:maxLines="4"
         android:textColor="@color/c_757575"
-        android:textSize="12sp"
+        android:textSize="14sp"
         app:layout_constraintTop_toBottomOf="@id/tv_title"
         tools:text="测试是水电费第三方测试是水电费第三方" />
 

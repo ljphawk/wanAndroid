@@ -3,9 +3,8 @@ package com.ljp.wanandroid.network.base
 import com.qszx.respository.network.BaseApiResponse
 
 
-class ApiResponse<T> : BaseApiResponse<T>() {
+class ApiResponse<T>(val data: T? = null) : BaseApiResponse<T>() {
 
-    private val data: T? = null
     private val errorCode: Int? = null
     private val errorMsg: String? = null
 

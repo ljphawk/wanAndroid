@@ -21,7 +21,8 @@ import javax.inject.Inject
  *@描述
  */
 @HiltViewModel
-class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) : BaseViewModel() {
+class HomeViewModel @Inject constructor(private val homeRepository: HomeRepository) :
+    BaseViewModel() {
 
 
     fun getTabLayoutData(): Array<String> {
@@ -51,12 +52,7 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
     /**
      * 热门文章
      */
-    private val _hotArticleState = MutableStateFlow<BaseApiResponse<HomeArticleListBean>>(ApiResponse())
-    var hotArticleState = _hotArticleState.asStateFlow()
-
-    suspend fun getHomeHotArticle(page: Int) {
-        _hotArticleState.value = homeRepository.getHomeHotArticle(page)
-    }
+    suspend fun getHomeHotArticle(page: Int) = homeRepository.getHomeHotArticle(page)
 
 
 }

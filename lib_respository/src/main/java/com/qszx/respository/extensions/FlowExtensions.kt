@@ -37,7 +37,7 @@ fun <T> IUiView.launchAndCollect(
     requestBlock: suspend () -> BaseApiResponse<T>,
     showLoading: Boolean = true,
     showErrorToast: Boolean = true,
-    listenerBuilder: (ResultBuilder<T>.() -> Unit)?
+    listenerBuilder: (ResultBuilder<T>.() -> Unit)?,
 ) {
     lifecycleScope.launch {
         flow {
@@ -54,10 +54,34 @@ fun <T> IUiView.launchAndCollect(
     }
 }
 
+fun <T1, T2, R> IUiView.launchZipAndCollect(
+    requestBlock1: suspend () -> BaseApiResponse<T1>,
+    requestBlock2: suspend () -> BaseApiResponse<T2>,
+    listener: (BaseApiResponse<T1>, BaseApiResponse<T2>) -> BaseApiResponse<R>,
+    showLoading: Boolean = true,
+    showErrorToast: Boolean = true,
+    listenerBuilder: (ResultBuilder<R>.() -> Unit)?,
+) {
+    lifecycleScope.launch {
+        flow { emit(requestBlock1()) }
+            .zip(flow { emit(requestBlock2()) }) { t1, t2 ->
+                listener.invoke(t1, t2)
+            }.onStart {
+                if (showLoading) {
+                    showLoading()
+                }
+            }.onCompletion {
+                dismissLoading()
+            }.collect {
+                it.parseData(listenerBuilder, showErrorToast)
+            }
+    }
+}
+
 
 fun <T> Flow<BaseApiResponse<T>>.launchAndCollectIn(
     owner: LifecycleOwner,
-    minActiveState: Lifecycle.State = Lifecycle.State.STARTED,
+    minActiveState: Lifecycle.State = Lifecycle.State.CREATED,
     showErrorToast: Boolean = true,
     listenerBuilder: ResultBuilder<T>.() -> Unit,
 ) {
