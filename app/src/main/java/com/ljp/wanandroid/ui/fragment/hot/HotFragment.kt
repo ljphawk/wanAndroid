@@ -48,7 +48,6 @@ class HotFragment : BaseBindingFragment<FragmentHotBinding>() {
     }
 
     private fun initRecyclerView() {
-        PageRefreshLayout.preloadIndex = 0
         binding.recyclerView.linear().setup {
             addType<MutableList<HomeBannerBean>>(R.layout.item_hot_article_head_view)
             addType<HomeArticleBean>(R.layout.item_hot_article_view)

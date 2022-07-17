@@ -3,6 +3,7 @@ package com.ljp.wanandroid.app
 import android.os.Build
 import android.webkit.WebView
 import androidx.core.content.ContextCompat
+import com.drake.brv.PageRefreshLayout
 import com.drake.statelayout.StateConfig
 import com.facebook.stetho.Stetho
 import com.ljp.wanandroid.R
@@ -44,6 +45,7 @@ class MyApplication : BaseApplication() {
     }
 
     private fun initSmartRefresh() {
+        PageRefreshLayout.preloadIndex = 0
         StateConfig.apply {
             emptyLayout = R.layout.layout_empty
             errorLayout = R.layout.layout_error
