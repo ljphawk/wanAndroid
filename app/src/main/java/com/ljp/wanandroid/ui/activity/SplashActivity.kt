@@ -28,10 +28,6 @@ class SplashActivity : BaseBindingActivity<ActivitySplashBinding>() {
         lottieStatusChange(1.0f)
     }
 
-    override fun fitsSystemWindowsStatusBarColor(): Int {
-        return -1
-    }
-
     private fun initViewListener() {
 
         binding.lottie.addAnimatorUpdateListener {

@@ -9,8 +9,6 @@ import com.ljp.wanandroid.glide.loadImage
 import com.ljp.wanandroid.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
 import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.respository.extensions.launch
-import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.utils.extensions.noQuickClick
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -32,7 +30,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
     }
 
     override fun immersionBarView(): View {
-        return binding.clSearch
+        return binding.appBarLayout
     }
 
 
