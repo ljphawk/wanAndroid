@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.drake.brv.PageRefreshLayout
 import com.drake.brv.utils.bindingAdapter
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
@@ -13,9 +12,11 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentHotBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
+import com.ljp.wanandroid.extensions.navigate
 import com.ljp.wanandroid.model.HomeArticleBean
 import com.ljp.wanandroid.model.HomeArticleListBean
 import com.ljp.wanandroid.model.HomeBannerBean
+import com.ljp.wanandroid.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.home.HomeViewModel
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect
@@ -60,15 +61,33 @@ class HotFragment : BaseBindingFragment<FragmentHotBinding>() {
                     }
 
                     R.layout.item_hot_article_view -> {
-                        getBinding<ItemHotArticleViewBinding>().binding(getModel())
+                        getBinding<ItemHotArticleViewBinding>().binding(context, getModel())
                     }
                 }
+            }
+            R.id.cl_article_item.onClick {
+
+            }
+            R.id.tv_tag.onClick {
+
+            }
+            R.id.iv_collect.onClick {
+                clickCollect(getModel(), layoutPosition)
+
             }
         }
         binding.pageRefreshLayout.onRefresh {
             getHomeData()
         }
         binding.pageRefreshLayout.showLoading()
+    }
+
+    private fun clickCollect(model: HomeArticleBean, layoutPosition: Int) {
+        if (UserPreference.isLogin()) {
+            requestCollect(model, layoutPosition)
+        } else {
+            navigate(R.id.action_mainFragment_to_loginFragment)
+        }
     }
 
     private fun initViewModelObserver() {
@@ -118,6 +137,28 @@ class HotFragment : BaseBindingFragment<FragmentHotBinding>() {
         }
         data2.data()?.datas?.addAll(0, data1.data() ?: mutableListOf())
         return data2.data()
+    }
+
+    private fun requestCollect(model: HomeArticleBean, layoutPosition: Int) {
+        if (model.collect) {
+            launchAndCollect({ homeViewModel.cancelCollect(model.id) }) {
+                onSuccess = {
+                    model.collect = !model.collect
+                    binding.recyclerView.bindingAdapter.notifyItemChanged(layoutPosition)
+                }
+            }
+        } else {
+            launchAndCollect({ homeViewModel.collect(model.id) }) {
+                onSuccess = {
+                    model.collect = !model.collect
+                    binding.recyclerView.bindingAdapter.notifyItemChanged(layoutPosition)
+                }
+            }
+        }
+    }
+
+    private fun requestCancelCollect(id: Long, layoutPosition: Int) {
+
     }
 
 }

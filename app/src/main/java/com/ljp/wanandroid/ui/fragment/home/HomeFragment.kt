@@ -6,6 +6,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
 import com.ljp.wanandroid.glide.loadImage
+import com.ljp.wanandroid.glide.loadImageCircleCrop
 import com.ljp.wanandroid.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
 import com.qszx.base.ui.BaseBindingFragment
@@ -36,12 +37,12 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
 
     override fun initData(view: View, savedInstanceState: Bundle?) {
         initViewListener()
-        binding.civAvatar.loadImage(UserPreference.getUserAvatarUrl())
+        binding.ivAvatar.loadImageCircleCrop(UserPreference.getUserAvatarUrl())
     }
 
     private fun initViewListener() {
         initTabLayoutAndViewPage2()
-        binding.civAvatar.noQuickClick {
+        binding.ivAvatar.noQuickClick {
             (parentFragment as MainFragment).binding.drawerLayout.apply {
                 if (isDrawerOpen(GravityCompat.START)) {
                     closeDrawer(GravityCompat.START)

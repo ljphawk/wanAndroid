@@ -54,5 +54,15 @@ class HomeViewModel @Inject constructor(private val homeRepository: HomeReposito
      */
     suspend fun getHomeHotArticle(page: Int) = homeRepository.getHomeHotArticle(page)
 
+    /**
+     * 收藏
+     */
+    suspend fun collect(id: Long) = homeRepository.collect(id)
+
+    /**
+     * 取消收藏
+     */
+    suspend fun cancelCollect(id: Long) = homeRepository.cancelCollect(id)
+
 
 }

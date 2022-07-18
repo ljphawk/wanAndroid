@@ -5,6 +5,7 @@ import com.ljp.wanandroid.model.HomeArticleListBean
 import com.ljp.wanandroid.model.HomeBannerBean
 import com.ljp.wanandroid.network.base.ApiResponse
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 
@@ -32,5 +33,17 @@ interface HomeApiService {
      */
     @GET("/article/list/{page}/json")
     suspend fun getHomeHotArticle(@Path("page") page: Int): ApiResponse<HomeArticleListBean>
+
+    /**
+     * 收藏
+     */
+    @POST("/lg/collect/{id}/json")
+    suspend fun collect(@Path("id") page: Long): ApiResponse<Any>
+
+    /**
+     * 取消收藏
+     */
+    @POST("/lg/uncollect_originId/{id}/json")
+    suspend fun cancelCollect(@Path("id") page: Long): ApiResponse<Any>
 
 }

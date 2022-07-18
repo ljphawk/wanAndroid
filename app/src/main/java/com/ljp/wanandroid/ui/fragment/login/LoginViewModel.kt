@@ -1,13 +1,8 @@
-package com.ljp.wanandroid.ui.activity.login
+package com.ljp.wanandroid.ui.fragment.login
 
-import com.ljp.wanandroid.model.WxArticleBean
-import com.ljp.wanandroid.network.base.ApiResponse
 import com.ljp.wanandroid.network.repository.UserRepository
 import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.network.BaseApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.asStateFlow
 import javax.inject.Inject
 
 

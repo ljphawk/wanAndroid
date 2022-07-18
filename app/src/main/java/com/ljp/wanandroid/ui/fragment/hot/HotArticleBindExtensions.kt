@@ -1,10 +1,15 @@
 package com.ljp.wanandroid.ui.fragment.hot
 
 import android.content.Context
+import android.graphics.Paint
 import android.os.Build
 import android.text.Html
+import android.text.method.LinkMovementMethod
+import android.view.View
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.LifecycleOwner
+import com.ljp.wanandroid.R
 import com.ljp.wanandroid.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
@@ -12,6 +17,10 @@ import com.ljp.wanandroid.glide.loadImage
 import com.ljp.wanandroid.model.HomeArticleBean
 import com.ljp.wanandroid.model.HomeBannerBean
 import com.ljp.wanandroid.ui.fragment.home.HomeBannerAdapter
+import com.ljp.wanandroid.utils.SpanUtils
+import com.qszx.utils.RegexUtils
+import com.qszx.utils.extensions.contentHasValue
+import com.qszx.utils.extensions.show
 import com.qszx.utils.showToast
 import java.util.regex.Pattern
 
@@ -42,21 +51,21 @@ fun ItemHotArticleHeadViewBinding.binding(
     }
 }
 
-fun ItemHotArticleViewBinding.binding(data: HomeArticleBean) {
+fun ItemHotArticleViewBinding.binding(context: Context, data: HomeArticleBean) {
     civAvatar.loadImage(UrlConstant.getAvatarUrl(data.id.toString()))
     tvAuthor.text = data.getAuthorText()
     tvTime.text = data.niceDate
     tvTitle.text = Html.fromHtml(data.title)
-    tvDesc.text = removeAllBank(Html.fromHtml(data.desc).toString(),2)
-}
-
-
-private fun removeAllBank(str: String?, count: Int): String {
-    var s = ""
-    if (str != null) {
-        val p = Pattern.compile("\\s{$count,}|\t|\r|\n")
-        val m = p.matcher(str)
-        s = m.replaceAll(" ")
+    val desc = RegexUtils.removeAllBank(Html.fromHtml(data.desc).toString())
+    if (tvDesc.show(desc.contentHasValue())) {
+        tvDesc.text = desc
     }
-    return s
+    tvTop.show(data.isTop())
+    tvNew.show(data.fresh)
+    val classifyName = data.getClassifyName()
+    if (tvTag.show(classifyName.contentHasValue())) {
+        tvTag.text = classifyName
+    }
+
+    ivCollect.isActivated = data.collect
 }

@@ -56,7 +56,7 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
     /**
      * 导航方法，根据路由名跳转
      */
-    abstract fun navigation(name: String, bundle: Bundle? = null, )
+    abstract fun navigation(name: String, bundle: Bundle? = null)
 
     fun navigate(@IdRes resId: Int, args: Bundle? = null) {
         navController.navigate(resId, args, getNavOptions())
@@ -88,7 +88,7 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
         navController.navigate(Uri.parse(newDeepLink), getNavOptions())
     }
 
-    fun popBackStack(@IdRes destinationId: Int, inclusive: Boolean) {
+    fun popBackStack(@IdRes destinationId: Int = 0, inclusive: Boolean = true) {
         navController.popBackStack(destinationId, inclusive)
     }
 

@@ -8,8 +8,18 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.ljp.wanandroid.ui.fragment.main.MainFragment"
-        tools:layout="@layout/fragment_main"
-        android:label="MainFragment" >
+        android:label="MainFragment"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_mainFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.ljp.wanandroid.ui.fragment.login.LoginFragment"
+        android:label="LoginFragment"
+        tools:layout="@layout/fragment_login" />
 
 </navigation>

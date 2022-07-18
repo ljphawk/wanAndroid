@@ -26,7 +26,7 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
     private val loadingDialog by lazy { LoadingDialog.Builder(requireContext()) }
 
     protected lateinit var immersionBar: ImmersionBar
-    protected var routerActivity: RouterActivity<*>? = null
+    var routerActivity: RouterActivity<*>? = null
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -35,11 +35,10 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
         }
     }
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View {
         _binding = ViewBindingUtil.inflateWithGeneric(this, inflater, container, false)
         return binding.root
@@ -101,6 +100,10 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
         loadingDialog.dismiss()
     }
 
+    fun finish(){
+        routerActivity?.popBackStack()
+    }
+
     override fun onDestroyView() {
         super.onDestroyView()
 
@@ -108,6 +111,6 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
             CommUtils.hideSoftKeyBoard(it)
         }
         _binding = null
-
     }
+
 }

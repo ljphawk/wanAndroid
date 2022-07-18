@@ -21,13 +21,17 @@ data class HomeArticleBean(
     val shareUser: String?,//分享者
     val desc: String?,//
     val title: String?,//
-    val chapterName: String?,//课程推荐
-    val superChapterName: String?,//
-    val collect: Boolean,//
+    val superChapterId: Long,//一级分类Id
+    val superChapterName: String?,//一级分类
+    val chapterId: Long,//二级分类Id
+    val chapterName: String?,//二级分类
+    var collect: Boolean,//是否收藏
     val id: Long,//
-    val fresh: Boolean,//
+    val type: Int,
+    val fresh: Boolean,//新
     val niceDate: String?,//
-    val tags: MutableList<HomeArticleTagBean>?,//
+    val tags: MutableList<HomeArticleTagBean>?,//标签
+    val zan: Int,//赞的数量
 ) {
     fun getAuthorText(): String {
         return if (author.contentHasValue()) {
@@ -36,6 +40,20 @@ data class HomeArticleBean(
             "分享人:${shareUser}"
         } else {
             "无"
+        }
+    }
+
+    fun isTop(): Boolean {
+        return type == 1
+    }
+
+    fun getClassifyName(): String {
+        return if (!chapterName.contentHasValue() && !superChapterName.contentHasValue()) {
+            ""
+        } else if (!chapterName.contentHasValue()) {
+            "$superChapterName"
+        } else {
+            "$superChapterName / $chapterName"
         }
     }
 }

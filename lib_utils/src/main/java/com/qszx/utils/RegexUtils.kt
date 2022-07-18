@@ -54,4 +54,15 @@ object RegexUtils {
     fun dislodgeChineseCharacters(content: String): String {
         return Pattern.compile("[\u4e00-\u9fa5]").matcher(content).replaceAll("") ?: ""
     }
+
+     fun removeAllBank(str: String?): String {
+        var s = ""
+        if (str != null) {
+            val p = Pattern.compile("[\t\r\n]")
+            val m = p.matcher(str)
+            s = m.replaceAll(" ")
+        }
+        return s
+    }
+
 }

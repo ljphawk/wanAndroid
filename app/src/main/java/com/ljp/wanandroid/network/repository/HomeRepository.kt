@@ -28,4 +28,16 @@ class HomeRepository @Inject constructor(private val homeApiService: HomeApiServ
     suspend fun getHomeHotArticle(page: Int) = executeHttp { homeApiService.getHomeHotArticle(page) }
 
 
+    /**
+     * 收藏
+     */
+    suspend fun collect(id: Long) = executeHttp { homeApiService.collect(id) }
+
+
+    /**
+     * 取消收藏
+     */
+    suspend fun cancelCollect(id: Long) = executeHttp { homeApiService.cancelCollect(id) }
+
+
 }
