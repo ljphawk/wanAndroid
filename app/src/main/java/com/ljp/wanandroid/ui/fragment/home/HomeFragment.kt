@@ -62,7 +62,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
                 }
             }
         }
-        binding.marqueeView.setOnItemClickListener { position, textView ->
+        binding.marqueeView.setOnItemClickListener { _, textView ->
             showToast(textView.text)
             routerActivity?.navigate(R.id.action_mainFragment_to_searchFragment)
         }

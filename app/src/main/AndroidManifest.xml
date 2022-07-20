@@ -72,6 +72,12 @@
             android:name=".ui.activity.main.MainActivity"
             android:screenOrientation="portrait" />
 
+        <service
+            android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+            android:label="dexopt"
+            android:process=":dexopt" >
+        </service>
+
     </application>
 
 </manifest>

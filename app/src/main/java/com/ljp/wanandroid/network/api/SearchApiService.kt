@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.network.api
 
-import com.ljp.wanandroid.model.HomeArticleListBean
+import com.ljp.wanandroid.model.ArticleListBean
 import com.ljp.wanandroid.model.SearchHotKeyBean
 import com.ljp.wanandroid.network.base.ApiResponse
 import retrofit2.http.*
@@ -21,6 +21,6 @@ interface SearchApiService {
 
     @FormUrlEncoded
     @POST("/article/query/{page}/json")
-    suspend fun search(@Path("page") page: Int, @Field("k") key: String): ApiResponse<HomeArticleListBean>
+    suspend fun search(@Path("page") page: Int, @Field("k") key: String): ApiResponse<ArticleListBean>
 
 }

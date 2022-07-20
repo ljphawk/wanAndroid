@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.di
 
-import com.ljp.wanandroid.network.api.HomeApiService
+import com.ljp.wanandroid.network.api.ArticleApiService
 import com.ljp.wanandroid.network.api.SearchApiService
 import com.ljp.wanandroid.network.api.UserApiService
 import com.ljp.wanandroid.network.base.RetrofitClient
@@ -26,11 +26,13 @@ object ApiServiceModule {
         return RetrofitClient.getApiService(UserApiService::class.java)
     }
 
+
     @Provides
     @Singleton
-    fun providesHomeApiService(): HomeApiService {
-        return RetrofitClient.getApiService(HomeApiService::class.java)
+    fun providesArticleApiService(): ArticleApiService {
+        return RetrofitClient.getApiService(ArticleApiService::class.java)
     }
+
 
     @Provides
     @Singleton

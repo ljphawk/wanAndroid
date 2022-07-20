@@ -1,9 +1,9 @@
 package com.ljp.wanandroid.di
 
-import com.ljp.wanandroid.network.api.HomeApiService
+import com.ljp.wanandroid.network.api.ArticleApiService
 import com.ljp.wanandroid.network.api.SearchApiService
 import com.ljp.wanandroid.network.api.UserApiService
-import com.ljp.wanandroid.network.repository.HomeRepository
+import com.ljp.wanandroid.network.repository.ArticleRepository
 import com.ljp.wanandroid.network.repository.SearchRepository
 import com.ljp.wanandroid.network.repository.UserRepository
 import dagger.Module
@@ -30,8 +30,8 @@ object RepositoryModule {
 
     @Provides
     @ViewModelScoped
-    fun provideHomeRepository(homeApiService: HomeApiService): HomeRepository {
-        return HomeRepository(homeApiService)
+    fun provideArticleRepository(articleApiService: ArticleApiService): ArticleRepository {
+        return ArticleRepository(articleApiService)
     }
 
     @Provides

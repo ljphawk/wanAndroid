@@ -19,6 +19,8 @@ import java.util.ArrayList
  */
 class MainViewModel : BaseViewModel() {
 
+    private val needLoginPageActionId = mutableSetOf<Int>()
+
     fun getHomeTabLayoutData(): ArrayList<CustomTabEntity> {
         val list = arrayListOf<CustomTabEntity>()
         list.add(HomeTabLayoutData("首页", R.drawable.icon_home_select, R.drawable.icon_home_unselect))
@@ -35,5 +37,9 @@ class MainViewModel : BaseViewModel() {
         list.add(QuestionFragment.newInstance())
         list.add(ProjectFragment.newInstance())
         return list
+    }
+
+    fun actionIdNeedLogin(actionId: Int): Boolean {
+        return needLoginPageActionId.contains(actionId)
     }
 }

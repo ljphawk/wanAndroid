@@ -1,10 +1,7 @@
 package com.qszx.respository.extensions
 
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.*
 import com.qszx.base.ui.IUiView
 import com.qszx.respository.network.ResultBuilder
 import com.qszx.respository.network.BaseApiResponse
@@ -17,7 +14,7 @@ import kotlinx.coroutines.launch
  * 监听结果请根据需求 使用StateFlow或者ShareFlow
  */
 fun IUiView.launch(showLoading: Boolean = true, requestBlock: suspend () -> Unit) {
-    lifecycleScope.launch {
+    getScope().launch {
         flow {
             emit(requestBlock())
         }.onStart {
@@ -39,7 +36,7 @@ fun <T> IUiView.launchAndCollect(
     showErrorToast: Boolean = true,
     listenerBuilder: (ResultBuilder<T>.() -> Unit)?,
 ) {
-    lifecycleScope.launch {
+    getScope().launch {
         flow {
             emit(requestBlock())
         }.onStart {
@@ -62,7 +59,7 @@ fun <T1, T2, R> IUiView.launchZipAndCollect(
     showErrorToast: Boolean = true,
     listenerBuilder: (ResultBuilder<R>.() -> Unit)?,
 ) {
-    lifecycleScope.launch {
+    getScope().launch {
         flow { emit(requestBlock1()) }
             .zip(flow { emit(requestBlock2()) }) { t1, t2 ->
                 listener.invoke(t1, t2)
@@ -75,6 +72,14 @@ fun <T1, T2, R> IUiView.launchZipAndCollect(
             }.collect {
                 it.parseData(listenerBuilder, showErrorToast)
             }
+    }
+}
+
+private fun IUiView.getScope(): LifecycleCoroutineScope {
+    return if (this is Fragment) {
+        viewLifecycleOwner.lifecycleScope
+    } else {
+        lifecycleScope
     }
 }
 

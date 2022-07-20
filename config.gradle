@@ -29,6 +29,7 @@ ext {
             lib_shapeview     : project(":lib_shapeview"),
             //https://github.com/H07000223/FlycoTabLayout
             lib_flycoTabLayout: project(":lib_flycoTabLayout"),
+            lib_smoothnavigation: project(":lib_smoothnavigation"),
     ]
 
     androidBaseDependencies = [
@@ -39,8 +40,8 @@ ext {
     ]
 
     navigationDependencies = [
-            navigation_ui    : "androidx.navigation:navigation-ui:${versions.nav_version}",
-            smooth_navigation: "com.kunminx.arch:smooth-navigation:4.0.0-beta1",
+            navigation_fragment_ktx: "androidx.navigation:navigation-fragment-ktx:${versions.nav_version}",
+            navigation_ui          : "androidx.navigation:navigation-ui-ktx:${versions.nav_version}",
     ]
 
     lifecycleDependencies = [
@@ -98,9 +99,13 @@ ext {
             //https://github.com/sunfusheng/MarqueeView
             marqueeView                  : "com.sunfusheng:MarqueeView:1.4.1",
             //https://github.com/hongyangAndroid/FlowLayout
-            flowlayout                  : "com.hyman:flowlayout-lib:1.1.2",
+            flowlayout                   : "com.hyman:flowlayout-lib:1.1.2",
             //https://github.com/hongyangAndroid/FlowLayout
-            litepal                  : "org.litepal.guolindev:core:3.2.3",
+            litepal                      : "org.litepal.guolindev:core:3.2.3",
+            //https://x5.tencent.com/docs/access.html
+            x5WebView                    : "com.tencent.tbs:tbssdk:44199",
+            //https://x5.tencent.com/docs/access.html
+            titleBar                     : "com.github.getActivity:TitleBar:9.5",
     ]
 
     //https://github.com/DylanCaiCoding/ViewBindingKTX

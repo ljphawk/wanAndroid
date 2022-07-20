@@ -1,0 +1,5 @@
+apply from: "../basic.gradle"
+
+dependencies {
+    navigationDependencies.each { k, v -> api v }
+}

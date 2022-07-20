@@ -6,8 +6,9 @@ import android.view.View
 import androidx.activity.OnBackPressedCallback
 import androidx.annotation.IdRes
 import androidx.navigation.NavController
+import androidx.navigation.NavDirections
 import androidx.navigation.NavOptions
-import androidx.navigation.fragment.NavHostFragment
+import ljp.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.qszx.base.R
 import com.qszx.utils.showToast
@@ -22,7 +23,7 @@ import java.util.regex.Pattern
 abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
 
 
-    private lateinit var navController: NavController
+    lateinit var navController: NavController
     private var exitTime = 0L
 
 
@@ -54,15 +55,20 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
     abstract fun controllerId(): Int
 
     /**
-     * 导航方法，根据路由名跳转
+     * 导航方法，根据路由id跳转
      */
-    abstract fun navigation(name: String, bundle: Bundle? = null)
+    open fun navigate(@IdRes actionId: Int, args: Bundle? = null){
+         navController.navigate(actionId,args, getNavOptions())
+     }
 
-    fun navigate(@IdRes resId: Int, args: Bundle? = null) {
-        navController.navigate(resId, args, getNavOptions())
+    /**
+     * 导航方法，根据路由安全参数跳转
+     */
+    fun navigate(directions: NavDirections) {
+        navController.navigate(directions.actionId,directions.arguments, getNavOptions())
     }
 
-    private fun getNavOptions(): NavOptions {
+     private fun getNavOptions(): NavOptions {
         return NavOptions.Builder()
             .setEnterAnim(R.anim.slide_in_right)
             .setExitAnim(R.anim.slide_out_left)

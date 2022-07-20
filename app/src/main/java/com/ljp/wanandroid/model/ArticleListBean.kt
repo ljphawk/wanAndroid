@@ -8,14 +8,14 @@ import com.qszx.utils.extensions.contentHasValue
  *@创建时间     2022/7/6 11:30.
  *@描述
  */
-data class HomeArticleListBean(
-    var datas: MutableList<HomeArticleBean>,
+data class ArticleListBean(
+    var datas: MutableList<ArticleBean>,
     val curPage: Int,
     val pageCount: Int,
     val over: Boolean,
 )
 
-data class HomeArticleBean(
+data class ArticleBean(
     val link: String?,
     val author: String?,//作者
     val shareUser: String?,//分享者
