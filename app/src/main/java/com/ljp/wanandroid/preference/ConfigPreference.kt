@@ -24,4 +24,6 @@ object ConfigPreference : BasePreference() {
     var appHostStatus by stringValue(defaultValue = BuildConfig.BUILD_TYPE)
 
     var loginPhone by stringValue(defaultValue = "")
+
+    var searchHotKey by stringValue()
 }

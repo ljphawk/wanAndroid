@@ -13,13 +13,22 @@
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-    </fragment>
 
+        <action
+            android:id="@+id/action_mainFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.ljp.wanandroid.ui.fragment.login.LoginFragment"
         android:label="LoginFragment"
         tools:layout="@layout/fragment_login" />
+
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.ljp.wanandroid.ui.fragment.search.SearchFragment"
+        tools:layout="@layout/fragment_search"
+        android:label="SearchFragment" />
 
 </navigation>

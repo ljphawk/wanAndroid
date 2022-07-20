@@ -4,13 +4,22 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
+import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
 import com.ljp.wanandroid.glide.loadImage
+import com.ljp.wanandroid.model.SearchHotKeyBean
+import com.ljp.wanandroid.preference.ConfigPreference
 import com.ljp.wanandroid.glide.loadImageCircleCrop
 import com.ljp.wanandroid.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
+import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
 import com.qszx.base.ui.BaseBindingFragment
+import com.qszx.respository.extensions.launchAndCollect
+import com.qszx.respository.extensions.parseList
+import com.qszx.respository.extensions.parseObject
+import com.qszx.respository.extensions.toJsonString
 import com.qszx.utils.extensions.noQuickClick
+import com.qszx.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 
@@ -23,6 +32,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
 
     private val homeViewModel by viewModels<HomeViewModel>()
+    private val searchViewModel by viewModels<SearchViewModel>()
 
     companion object {
         fun newInstance(): HomeFragment {
@@ -37,6 +47,7 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
 
     override fun initData(view: View, savedInstanceState: Bundle?) {
         initViewListener()
+        getSearchHotKey()
         binding.ivAvatar.loadImageCircleCrop(UserPreference.getUserAvatarUrl())
     }
 
@@ -51,6 +62,10 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
                 }
             }
         }
+        binding.marqueeView.setOnItemClickListener { position, textView ->
+            showToast(textView.text)
+            routerActivity?.navigate(R.id.action_mainFragment_to_searchFragment)
+        }
     }
 
     private fun initTabLayoutAndViewPage2() {
@@ -60,5 +75,21 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
         binding.tabLayout.setTabData(homeViewModel.getTabLayoutData())
     }
 
+
+    private fun getSearchHotKey() {
+        launchAndCollect({ searchViewModel.searchHotKeyList() }, showLoading = false, showErrorToast = false) {
+            onSuccess = {
+                ConfigPreference.searchHotKey = toJsonString(it)
+            }
+            onComplete={
+                setSearchHotKeyAdapter()
+            }
+        }
+    }
+
+    private fun setSearchHotKeyAdapter() {
+        val data = parseList(ConfigPreference.searchHotKey,SearchHotKeyBean::class.java)
+        binding.marqueeView.startWithList(data)
+    }
 
 }

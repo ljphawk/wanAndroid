@@ -12,6 +12,7 @@ import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import dagger.hilt.android.HiltAndroidApp
+import org.litepal.LitePal
 
 
 /*
@@ -26,8 +27,8 @@ class MyApplication : BaseApplication() {
         super.onCreate()
         webViewSetPath()
 
+        LitePal.initialize(this)
         Stetho.initializeWithDefaults(this)
-        //smartRefresh
         initSmartRefresh()
     }
 
