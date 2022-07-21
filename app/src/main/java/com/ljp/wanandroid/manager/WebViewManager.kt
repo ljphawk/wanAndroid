@@ -1,5 +1,6 @@
 package com.ljp.wanandroid.manager
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.content.MutableContextWrapper
 import android.graphics.Color
@@ -45,6 +46,7 @@ class WebViewManager {
 
     private val webViewCache: MutableList<WebView> = ArrayList(1)
 
+    @SuppressLint("SetJavaScriptEnabled")
     private fun create(context: Context): WebView {
         val webView = WebView(context)
         webView.setBackgroundColor(Color.TRANSPARENT)
@@ -63,12 +65,12 @@ class WebViewManager {
         webSetting.databaseEnabled = true
         webSetting.setSupportZoom(true)
         webSetting.builtInZoomControls = true
-        webSetting.setSupportMultipleWindows(true)
         webSetting.displayZoomControls = false
         webSetting.useWideViewPort = true
         webSetting.mixedContentMode = android.webkit.WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
         CookieManager.getInstance().setAcceptThirdPartyCookies(webView, true)
         webView.settingsExtension?.apply {
+            setDisplayCutoutEnable(true)
             setContentCacheEnable(true)
             setPageCacheCapacity(IX5WebSettings.DEFAULT_CACHE_CAPACITY)
         }
