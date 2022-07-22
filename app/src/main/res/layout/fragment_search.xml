@@ -5,12 +5,11 @@
     android:layout_height="match_parent"
     android:background="@color/c_F2F2F2">
 
-    <LinearLayout
-        android:id="@+id/ll_search"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_search"
         android:layout_width="match_parent"
         android:layout_height="?actionBarSize"
         android:background="@color/white"
-        android:gravity="center_vertical"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -23,43 +22,60 @@
             android:background="@drawable/shape_login_input_bg"
             android:drawableStart="@drawable/icon_search"
             android:drawablePadding="6dp"
-            android:paddingHorizontal="12dp"
+            android:hint="请输入搜索内容"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:maxLines="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="24dp"
             android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toLeftOf="@id/tv_cancel"
+            app:layout_constraintTop_toTopOf="parent"
             app:shape_radius="15dp"
             app:shape_solidColor="@color/c_F4F6FA" />
+
+        <ImageView
+            android:id="@+id/iv_clear_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="12dp"
+            android:src="@drawable/icon_search_clear"
+            app:layout_constraintBottom_toBottomOf="@id/et_search"
+            app:layout_constraintRight_toRightOf="@id/et_search"
+            app:layout_constraintTop_toTopOf="@id/et_search" />
+
 
         <TextView
             android:id="@+id/tv_cancel"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:padding="10dp"
-            android:text="取消" />
+            android:text="取消"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toRightOf="@id/et_search"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-    <com.drake.brv.PageRefreshLayout
-        android:id="@+id/pageRefreshLayout"
+    <FrameLayout
+        android:id="@+id/fl_container"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_search">
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingHorizontal="6dp" />
-
-    </com.drake.brv.PageRefreshLayout>
+        app:layout_constraintTop_toBottomOf="@id/cl_search" />
 
     <LinearLayout
+        android:id="@+id/ll_search_classify"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:background="@color/white"
         android:orientation="vertical"
         android:paddingHorizontal="12dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ll_search">
+        app:layout_constraintTop_toBottomOf="@id/cl_search">
 
         <TextView
             android:layout_width="wrap_content"
@@ -74,9 +90,9 @@
 
         <LinearLayout
             android:id="@+id/ll_search_history"
-            android:layout_marginTop="20dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:orientation="vertical">
 
             <TextView
@@ -96,7 +112,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="12dp"
-                android:drawableStart="@drawable/icon_clear_serach"
+                android:drawableStart="@drawable/icon_clear_search"
                 android:drawablePadding="6dp"
                 android:padding="6dp"
                 android:text="清空搜索历史"

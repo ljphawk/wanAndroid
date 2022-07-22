@@ -18,9 +18,9 @@ class HomeViewModel : BaseViewModel() {
 
     fun getAdapterFragmentList(): MutableList<Fragment> {
         val list = mutableListOf<Fragment>()
-        list.add(ArticleListFragment.newInstance(ArticleListParams(HomeArticleParams(HomeArticleType.HOT))))
-        list.add(ArticleListFragment.newInstance(ArticleListParams(HomeArticleParams(HomeArticleType.SQUARE))))
-        list.add(ArticleListFragment.newInstance(ArticleListParams(HomeArticleParams(HomeArticleType.QUESTION))))
+        list.add(ArticleListFragment.newInstance(ArticleListParams.getHomeParams(HomeArticleType.HOT)))
+        list.add(ArticleListFragment.newInstance(ArticleListParams.getHomeParams(HomeArticleType.SQUARE)))
+        list.add(ArticleListFragment.newInstance(ArticleListParams.getHomeParams(HomeArticleType.QUESTION)))
         return list
     }
 

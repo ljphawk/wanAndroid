@@ -11,6 +11,7 @@ import androidx.navigation.NavOptions
 import ljp.navigation.fragment.NavHostFragment
 import androidx.viewbinding.ViewBinding
 import com.qszx.base.R
+import com.qszx.utils.CommUtils
 import com.qszx.utils.showToast
 import java.util.regex.Pattern
 
@@ -57,18 +58,19 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
     /**
      * 导航方法，根据路由id跳转
      */
-    open fun navigate(@IdRes actionId: Int, args: Bundle? = null){
-         navController.navigate(actionId,args, getNavOptions())
-     }
+    open fun navigate(@IdRes actionId: Int, args: Bundle? = null) {
+        CommUtils.hideSoftKeyBoard(this)
+        navController.navigate(actionId, args, getNavOptions())
+    }
 
     /**
      * 导航方法，根据路由安全参数跳转
      */
     fun navigate(directions: NavDirections) {
-        navController.navigate(directions.actionId,directions.arguments, getNavOptions())
+        navigate(directions.actionId, directions.arguments)
     }
 
-     private fun getNavOptions(): NavOptions {
+    private fun getNavOptions(): NavOptions {
         return NavOptions.Builder()
             .setEnterAnim(R.anim.slide_in_right)
             .setExitAnim(R.anim.slide_out_left)
@@ -94,8 +96,12 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
         navController.navigate(Uri.parse(newDeepLink), getNavOptions())
     }
 
-    fun popBackStack(@IdRes destinationId: Int = 0, inclusive: Boolean = true) {
+    fun popBackStack(@IdRes destinationId: Int, inclusive: Boolean) {
         navController.popBackStack(destinationId, inclusive)
+    }
+
+    fun popBackStack() {
+        navController.popBackStack()
     }
 
 }

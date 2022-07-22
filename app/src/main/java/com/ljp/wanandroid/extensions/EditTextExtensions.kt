@@ -32,3 +32,8 @@ fun EditText.addTextChangedListener(listener: (String) -> Unit) {
     })
 }
 
+fun EditText.setTextAndSelection(text: String) {
+    setText(text)
+    setSelection(text.length)
+}
+

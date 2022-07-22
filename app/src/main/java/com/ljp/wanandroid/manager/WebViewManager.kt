@@ -49,8 +49,8 @@ class WebViewManager {
     @SuppressLint("SetJavaScriptEnabled")
     private fun create(context: Context): WebView {
         val webView = WebView(context)
-        webView.setBackgroundColor(Color.TRANSPARENT)
-        webView.view.setBackgroundColor(Color.TRANSPARENT)
+//        webView.setBackgroundColor(Color.TRANSPARENT)
+//        webView.view.setBackgroundColor(Color.TRANSPARENT)
         webView.overScrollMode = WebView.OVER_SCROLL_NEVER
         webView.view.overScrollMode = WebView.OVER_SCROLL_NEVER
         val webSetting = webView.settings

@@ -18,6 +18,9 @@ import com.ljp.wanandroid.model.HomeBannerBean
 import com.ljp.wanandroid.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.hot.binding
 import com.ljp.wanandroid.ui.fragment.main.MainFragmentDirections
+import com.ljp.wanandroid.ui.fragment.search.SearchFragmentDirections
+import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
+import com.ljp.wanandroid.utils.LOG
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.respository.network.BaseApiResponse
@@ -37,19 +40,21 @@ import kotlinx.coroutines.flow.launchIn
 class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
 
     private val articleViewModel by viewModels<ArticleViewModel>()
+    private val searchViewModel by viewModels<SearchViewModel>()
 
-    private val articleTypeParams by getBundleParam<ArticleListClassify>(BUNDLE_TYPE)
-    private val startIndexIsZero by getBundleParam<Boolean>(BUNDLE_START_INDEX, true)
+    private val _args by getBundleParam<ArticleListParams>(BUNDLE_ARGS)
+    private val args: ArticleListParams
+        get() {
+            return _args!!
+        }
 
     companion object {
-        private const val BUNDLE_TYPE = "BUNDLE_TYPE"
-        private const val BUNDLE_START_INDEX = "BUNDLE_START_INDEX"
+        private const val BUNDLE_ARGS = "BUNDLE_ARGS"
 
         fun newInstance(listBundle: ArticleListParams): ArticleListFragment {
             val fragment = ArticleListFragment()
             val bundle = Bundle()
-            bundle.putParcelable(BUNDLE_TYPE, listBundle.type)
-            bundle.putBoolean(BUNDLE_START_INDEX, listBundle.startIndexIsZero)
+            bundle.putParcelable(BUNDLE_ARGS, listBundle)
             fragment.arguments = bundle
             return fragment
         }
@@ -79,8 +84,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
                 }
             }
             R.id.cl_article_item.onClick {
-                val data = getModel<ArticleBean>()
-                routerActivity?.navigate(MainFragmentDirections.actionMainFragmentToWebViewFragment(data.link))
+                articleItemClick(getModel())
             }
             R.id.tv_tag.onClick {
 
@@ -92,24 +96,48 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
         binding.pageRefreshLayout.onRefresh {
             getArticleData()
         }
-        binding.pageRefreshLayout.showLoading()
+        if (args.isAutoRefresh) {
+            binding.pageRefreshLayout.showLoading()
+        }
+    }
+
+    private fun articleItemClick(data: ArticleBean) {
+        val directions = if (args.type is SearchArticleParams) {
+            SearchFragmentDirections.actionSearchFragmentToWebViewFragment(data.link)
+        } else {
+            MainFragmentDirections.actionMainFragmentToWebViewFragment(data.link)
+        }
+        routerActivity?.navigate(directions)
     }
 
     private fun getPageIndex(): Int {
-        return binding.pageRefreshLayout.index - if (startIndexIsZero!!) 1 else 0
+        return binding.pageRefreshLayout.index - if (args.startIndexIsZero) 1 else 0
     }
 
     private fun getArticleData() {
-        if (articleTypeParams == null) {
-            throw  IllegalStateException("未处理的类型参数")
-        }
-        if (articleTypeParams is HomeArticleParams) {
-            when ((articleTypeParams as HomeArticleParams).type) {
-                HomeArticleType.HOT -> getHomeHotData()
-                HomeArticleType.SQUARE -> getSquareData()
-                HomeArticleType.QUESTION -> getHomeQuestionData()
-            }
+        val articleTypeParams = args.type
+        val page = getPageIndex()
+        when (articleTypeParams) {
+            is HomeArticleParams -> {
+                when (articleTypeParams.type) {//热门数据
+                    HomeArticleType.HOT -> getHomeHotData()
+                    HomeArticleType.SQUARE -> requestGetArticleListData {//广场数据
+                        articleViewModel.getHomeSquareArticle(page)
+                    }
+                    HomeArticleType.QUESTION -> requestGetArticleListData {//问答列表
+                        articleViewModel.getHomeQuestionArticle(page)
+                    }
+                }
 
+            }
+            is SearchArticleParams -> {
+                requestGetArticleListData {//搜索
+                    searchViewModel.search(page, articleTypeParams.content)
+                }
+            }
+            else -> {
+                throw  IllegalStateException("未处理的类型参数")
+            }
         }
     }
 
@@ -137,57 +165,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope).start()
         } else {
-            launchAndCollect(
-                { articleViewModel.getHomeHotArticle(getPageIndex()) },
-                false
-            ) {
-                onSuccess = {
-                    binding.pageRefreshLayout.addData(it?.datas) {
-                        !(it?.over ?: false)
-                    }
-                }
-                onFailed = { _, _ ->
-                    binding.pageRefreshLayout.addData(null)
-                }
-            }
-        }
-    }
-
-    /**
-     * 获取广场数据
-     */
-    private fun getSquareData() {
-        launchAndCollect(
-            { articleViewModel.getHomeSquareArticle(getPageIndex()) },
-            false
-        ) {
-            onSuccess = {
-                binding.pageRefreshLayout.addData(it?.datas) {
-                    !(it?.over ?: false)
-                }
-            }
-            onFailed = { _, _ ->
-                binding.pageRefreshLayout.addData(null)
-            }
-        }
-    }
-
-    /**
-     * 问答列表
-     */
-    private fun getHomeQuestionData() {
-        launchAndCollect(
-            { articleViewModel.getHomeQuestionArticle(getPageIndex()) },
-            false
-        ) {
-            onSuccess = {
-                binding.pageRefreshLayout.addData(it?.datas) {
-                    !(it?.over ?: false)
-                }
-            }
-            onFailed = { _, _ ->
-                binding.pageRefreshLayout.addData(null)
-            }
+            requestGetArticleListData { articleViewModel.getHomeHotArticle(getPageIndex()) }
         }
     }
 
@@ -202,6 +180,35 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
         return data2.data()
     }
 
+    /**
+     * 文章列表
+     */
+    private fun requestGetArticleListData(
+        showLoading: Boolean = false,
+        complete: () -> Unit = {},
+        function: suspend () -> BaseApiResponse<ArticleListBean>,
+    ) {
+        launchAndCollect(
+            function,
+            showLoading
+        ) {
+            onSuccess = {
+                val isRefresh = binding.pageRefreshLayout.isRefreshing
+                binding.pageRefreshLayout.addData(it?.datas) {
+                    !(it?.over ?: false)
+                }
+                if (isRefresh && (it?.datas?.size ?: 0) >= 0) {//搜索场景下
+                    binding.recyclerView.scrollToPosition(0)
+                }
+            }
+            onFailed = { _, _ ->
+                binding.pageRefreshLayout.addData(null)
+            }
+            onComplete = complete
+        }
+    }
+
+
     private fun requestCollect(model: ArticleBean, layoutPosition: Int) {
         launchAndCollect({ articleViewModel.collect(model.collect, model.id) }) {
             onSuccess = {
@@ -211,5 +218,12 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
         }
     }
 
+    fun searchKey(content: String) {
+        if (args.type is SearchArticleParams) {
+            (args.type as SearchArticleParams).content = content
+            binding.pageRefreshLayout.autoRefresh()
+        }
+
+    }
 
 }
