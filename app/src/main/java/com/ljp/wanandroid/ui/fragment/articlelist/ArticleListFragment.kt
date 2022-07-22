@@ -12,6 +12,8 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentHotBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
+import com.ljp.wanandroid.eventbus.AppEvent
+import com.ljp.wanandroid.eventbus.CollectEvent
 import com.ljp.wanandroid.model.ArticleBean
 import com.ljp.wanandroid.model.ArticleListBean
 import com.ljp.wanandroid.model.HomeBannerBean
@@ -25,10 +27,14 @@ import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.respository.network.BaseApiResponse
 import com.qszx.utils.extensions.getBundleParam
+import com.qszx.utils.extensions.hasContent
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow
 import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.launch
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 
 /*
@@ -61,6 +67,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
     }
 
     override fun initData(view: View, savedInstanceState: Bundle?) {
+        AppEvent.register(this)
         initRecyclerView()
     }
 
@@ -90,7 +97,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
 
             }
             R.id.iv_collect.onClick {
-                clickCollect(getModel(), layoutPosition)
+                clickCollect(getModel())
             }
         }
         binding.pageRefreshLayout.onRefresh {
@@ -141,9 +148,9 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
         }
     }
 
-    private fun clickCollect(model: ArticleBean, layoutPosition: Int) {
+    private fun clickCollect(model: ArticleBean) {
         if (UserPreference.isLogin()) {
-            requestCollect(model, layoutPosition)
+            requestCollect(model)
         } else {
             routerActivity?.navigate(R.id.action_mainFragment_to_loginFragment)
         }
@@ -209,11 +216,10 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
     }
 
 
-    private fun requestCollect(model: ArticleBean, layoutPosition: Int) {
+    private fun requestCollect(model: ArticleBean) {
         launchAndCollect({ articleViewModel.collect(model.collect, model.id) }) {
             onSuccess = {
-                model.collect = !model.collect
-                binding.recyclerView.bindingAdapter.notifyItemChanged(layoutPosition)
+                AppEvent.post(CollectEvent(model.id, !model.collect))
             }
         }
     }
@@ -223,7 +229,33 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
             (args.type as SearchArticleParams).content = content
             binding.pageRefreshLayout.autoRefresh()
         }
+    }
 
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    fun eventCollectArticle(event: CollectEvent) {
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val data = (binding.recyclerView.bindingAdapter.models as MutableList<*>?)
+                if (data.hasContent()) {
+                    data!!.forEachIndexed { index, any ->
+                        val item = any as ArticleBean
+                        if (event.articleId == item.id) {
+                            item.collect = event.collect
+                            val adapter = binding.recyclerView.bindingAdapter
+                            adapter.notifyItemChanged(index + adapter.headerCount)
+                        }
+                    }
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+
+        }
+    }
+
+    override fun onDestroyView() {
+        AppEvent.unregister(this)
+        super.onDestroyView()
     }
 
 }
