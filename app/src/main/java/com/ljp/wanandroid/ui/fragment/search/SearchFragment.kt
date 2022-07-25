@@ -99,8 +99,10 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
     private fun initSearchHotKey() {
         lifecycleScope.launch {
             val hotKeyData = withContext(Dispatchers.IO) {
-                parseList(ConfigPreference.searchHotKey,
-                    SearchHotKeyBean::class.java)
+                parseList(
+                    ConfigPreference.searchHotKey,
+                    SearchHotKeyBean::class.java
+                )
             }
             initFlowlayout(binding.hotKeyFlowlayout, hotKeyData)
         }
@@ -127,19 +129,22 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
 
                 itemBinding.tvItem.text = data?.marqueeMessage()
                 itemBinding.ivRemove.gone()
-                if (flowLayout == binding.historyFlowlayout) {
-                    itemBinding.clItem.setOnLongClickListener {
+
+                itemBinding.root.setOnLongClickListener {
+                    if (flowLayout == binding.historyFlowlayout) {
                         itemBinding.ivRemove.visible()
                         lastRemoveView?.gone()
                         lastRemoveView = itemBinding.ivRemove
-                        true
                     }
+                    flowLayout == binding.historyFlowlayout
+                }
+                if (flowLayout == binding.historyFlowlayout) {
                     itemBinding.ivRemove.setOnClickListener {
                         data?.delete()
                         initSearchHistory()
                     }
                 }
-                itemBinding.clItem.noQuickClick {
+                itemBinding.root.noQuickClick {
                     search(data?.name ?: "")
                 }
                 return itemBinding.root
