@@ -4,9 +4,8 @@ import android.os.Bundle
 import android.view.View
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
-import com.ljp.wanandroid.R
+import com.example.lib_imageload.glide.loadImageCircleCrop
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
-import com.ljp.wanandroid.glide.loadImageCircleCrop
 import com.ljp.wanandroid.model.SearchHotKeyBean
 import com.ljp.wanandroid.preference.ConfigPreference
 import com.ljp.wanandroid.preference.UserPreference
@@ -18,7 +17,6 @@ import com.qszx.respository.extensions.launchAndCollect
 import com.qszx.respository.extensions.parseList
 import com.qszx.respository.extensions.toJsonString
 import com.qszx.utils.extensions.noQuickClick
-import com.qszx.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 

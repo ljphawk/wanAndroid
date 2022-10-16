@@ -1,0 +1,6 @@
+apply from: "../basic.gradle"
+
+dependencies {
+    //https://github.com/guolindev/PermissionX
+    api "com.guolindev.permissionx:permissionx:1.6.4"
+}

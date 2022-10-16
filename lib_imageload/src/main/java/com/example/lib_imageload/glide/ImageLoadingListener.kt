@@ -1,4 +1,4 @@
-package com.ljp.wanandroid.glide
+package com.example.lib_imageload.glide
 
 import android.graphics.drawable.Drawable
 import android.view.View

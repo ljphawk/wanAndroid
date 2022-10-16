@@ -1,10 +1,10 @@
 package com.ljp.wanandroid.network.base
 
-import com.qszx.respository.app.BaseApplication
 import com.qszx.utils.DateUtils
 import com.qszx.utils.PackageUtils
 import com.qszx.utils.SystemUtils
 import com.ljp.wanandroid.utils.ChannelUtils
+import com.qszx.base.BaseApplication
 
 
 /*

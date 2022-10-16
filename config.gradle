@@ -15,21 +15,22 @@ ext {
             android_ktx      : "1.4.0",
             lifecycle_version: "2.4.0",
             hilt_version     : "2.42",
-            glide_version    : "4.13.2",
             viewbinding_ktx  : "2.0.6",
             nav_version      : "2.4.2",
     ]
 
     projectModule = [
-            lib_base          : project(":lib_base"),
-            lib_respository   : project(":lib_respository"),
-            lib_dialog        : project(":lib_dialog"),
-            lib_utils         : project(":lib_utils"),
+            lib_base            : project(":lib_base"),
+            lib_respository     : project(":lib_respository"),
+            lib_dialog          : project(":lib_dialog"),
+            lib_utils           : project(":lib_utils"),
             // Shape 框架：https://github.com/getActivity/ShapeView
-            lib_shapeview     : project(":lib_shapeview"),
+            lib_shapeview       : project(":lib_shapeview"),
             //https://github.com/H07000223/FlycoTabLayout
-            lib_flycoTabLayout: project(":lib_flycoTabLayout"),
+            lib_flycoTabLayout  : project(":lib_flycoTabLayout"),
             lib_smoothnavigation: project(":lib_smoothnavigation"),
+            lib_permission      : project(":lib_permission"),
+            lib_imageload      : project(":lib_imageload"),
     ]
 
     androidBaseDependencies = [
@@ -75,13 +76,8 @@ ext {
             logger                       : "com.orhanobut:logger:2.2.0",
             //https://github.com/greenrobot/EventBus
             eventBus                     : "org.greenrobot:eventbus:3.3.1",
-            //https://github.com/guolindev/PermissionX
-            permissionX                  : "com.guolindev.permissionx:permissionx:1.6.4",
             //https://github.com/guolindev/LitePal
             guolindev_litepal            : "org.litepal.guolindev:core:3.2.2",
-            //https://github.com/bumptech/glide
-            glide                        : "com.github.bumptech.glide:glide:${versions.glide_version}",
-            glide_transformations        : "jp.wasabeef:glide-transformations:4.3.0",
             //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
             baseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
             //https://github.com/fondesa/recycler-view-divider
@@ -115,7 +111,6 @@ ext {
     ]
 
     thirdDependenciesKapt = [
-            glide_compiler       : "com.github.bumptech.glide:compiler:${versions.glide_version}",
             hilt_android_compiler: "com.google.dagger:hilt-android-compiler:${versions.hilt_version}"
     ]
 }

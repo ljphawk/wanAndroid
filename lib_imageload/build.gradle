@@ -1,0 +1,11 @@
+apply from: "../basic.gradle"
+
+
+dependencies {
+    compileOnly projectModule.lib_utils
+    //https://github.com/bumptech/glide
+    api "com.github.bumptech.glide:glide:4.13.2"
+    api "jp.wasabeef:glide-transformations:4.3.0"
+    kapt "com.github.bumptech.glide:compiler:4.13.2"
+    implementation networkDependencies.okhttp3
+}

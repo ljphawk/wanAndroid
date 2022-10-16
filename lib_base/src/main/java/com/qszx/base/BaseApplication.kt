@@ -1,7 +1,6 @@
-package com.qszx.respository.app
+package com.qszx.base
 
 import android.app.Application
-import com.tencent.mmkv.MMKV
 
 
 /*
@@ -18,7 +17,6 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        MMKV.initialize(this)
     }
 
 }

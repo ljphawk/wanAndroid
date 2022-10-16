@@ -11,7 +11,7 @@ import com.qszx.utils.extensions.contentHasValue
 data class ArticleListBean(
     var datas: MutableList<ArticleBean>,
     val curPage: Int,
-    val pageCount: Int,
+    val pageRetrofitClientCount: Int,
     val over: Boolean,
 )
 

@@ -6,15 +6,13 @@ import android.util.AttributeSet
 import androidx.constraintlayout.motion.widget.MotionLayout
 import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
+import com.example.lib_imageload.glide.loadImage
 import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.ItemMineRvBinding
 import com.ljp.wanandroid.databinding.LayoutLeftMineBinding
-import com.ljp.wanandroid.glide.loadImage
 import com.ljp.wanandroid.model.MineItemBean
 import com.ljp.wanandroid.preference.UserPreference
 import com.qszx.base.ui.BaseBindingLayout
-import com.qszx.utils.DateUtils
-import com.qszx.utils.extensions.show
 import com.qszx.utils.showToast
 
 

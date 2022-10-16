@@ -1,6 +1,6 @@
 package com.qszx.respository.network
 
-import com.qszx.respository.app.BaseApplication
+import com.qszx.base.BaseApplication
 import com.qszx.utils.showToast
 
 

@@ -1,21 +1,8 @@
 package com.ljp.wanandroid.app
 
-import android.os.Build
-import androidx.core.content.ContextCompat
-import com.drake.brv.PageRefreshLayout
-import com.drake.statelayout.StateConfig
-import com.facebook.stetho.Stetho
-import com.ljp.wanandroid.R
-import com.ljp.wanandroid.manager.WebViewManager
-import com.qszx.respository.app.BaseApplication
-import com.scwang.smart.refresh.footer.ClassicsFooter
-import com.scwang.smart.refresh.header.MaterialHeader
-import com.scwang.smart.refresh.layout.SmartRefreshLayout
-import com.tencent.smtt.export.external.TbsCoreSettings
-import com.tencent.smtt.sdk.QbSdk
-import com.tencent.smtt.sdk.WebView
+import com.qszx.base.BaseApplication
+import com.tencent.mmkv.MMKV
 import dagger.hilt.android.HiltAndroidApp
-import org.litepal.LitePal
 
 
 /*
@@ -28,7 +15,7 @@ class MyApplication : BaseApplication() {
 
     override fun onCreate() {
         super.onCreate()
-
+        MMKV.initialize(this)
     }
 
 

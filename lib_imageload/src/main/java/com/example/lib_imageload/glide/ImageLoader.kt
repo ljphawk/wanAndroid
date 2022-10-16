@@ -1,4 +1,4 @@
-package com.ljp.wanandroid.glide
+package com.example.lib_imageload.glide
 
 import android.annotation.SuppressLint
 import android.app.Activity
@@ -18,11 +18,12 @@ import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.load.resource.gif.GifOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
-import com.bumptech.glide.request.target.Target
-import com.ljp.wanandroid.R
+import com.example.lib_imageload.R
 import com.qszx.utils.extensions.imageUrlIsGif
 import com.qszx.utils.extensions.uiThread
 import java.lang.ref.WeakReference
+import com.bumptech.glide.request.target.Target
+
 
 
 /**

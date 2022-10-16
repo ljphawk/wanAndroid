@@ -3,10 +3,10 @@ package com.ljp.wanandroid.ui.fragment.hot
 import android.content.Context
 import android.text.Html
 import androidx.lifecycle.LifecycleOwner
+import com.example.lib_imageload.glide.loadImage
 import com.ljp.wanandroid.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
-import com.ljp.wanandroid.glide.loadImage
 import com.ljp.wanandroid.model.ArticleBean
 import com.ljp.wanandroid.model.HomeBannerBean
 import com.ljp.wanandroid.ui.fragment.home.HomeBannerAdapter

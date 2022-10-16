@@ -1,4 +1,4 @@
-package com.ljp.wanandroid.glide
+package com.example.lib_imageload.glide
 
 import android.content.Context
 import com.bumptech.glide.Glide

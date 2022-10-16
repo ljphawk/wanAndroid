@@ -1,5 +1,1 @@
 apply from: "../basic.gradle"
-
-dependencies {
-    compileOnly projectModule.lib_utils
-}

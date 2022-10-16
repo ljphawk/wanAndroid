@@ -1,9 +1,9 @@
-package com.ljp.wanandroid.glide
+package com.example.lib_imageload.glide
 
 import android.graphics.Bitmap
 import androidx.annotation.DrawableRes
 import com.bumptech.glide.load.Transformation
-import com.ljp.wanandroid.R
+import com.example.lib_imageload.R
 
 
 /**
