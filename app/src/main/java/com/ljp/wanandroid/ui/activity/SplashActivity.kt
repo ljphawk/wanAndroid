@@ -3,8 +3,7 @@ package com.ljp.wanandroid.ui.activity
 import android.content.Intent
 import android.os.Bundle
 import com.ljp.wanandroid.databinding.ActivitySplashBinding
-import com.ljp.wanandroid.test.activity.TestActivity
-import com.ljp.wanandroid.ui.activity.main.MainActivity
+import com.ljp.wanandroid.ui.activity.test.TestActivity
 import com.qszx.base.ui.BaseBindingActivity
 import com.qszx.utils.extensions.startActivity
 

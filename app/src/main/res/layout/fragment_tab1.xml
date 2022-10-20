@@ -5,18 +5,41 @@
     android:orientation="vertical">
 
     <Button
+        android:id="@+id/bt_request1"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="flow请求网络方式1" />
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="基于MutableStateFlow观察数据" />
+
     <Button
+        android:id="@+id/bt_request2"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:text="flow请求网络方式2" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="基于MutableShareFlow观察数据" />
+
     <Button
+        android:id="@+id/bt_request3"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:text="liveData请求网络" />
+        android:text="flow请求网络方式3" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="请求和结果处理都在一起,viewModel中不需要创建flow或者liveData对象,适用于不需要监听数据变化的常见.屏幕旋转和Activity重新后数据会消失" />
+
+    <TextView
+        android:id="@+id/tv_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="10dp" />
 </LinearLayout>

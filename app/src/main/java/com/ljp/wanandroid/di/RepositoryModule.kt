@@ -5,6 +5,7 @@ import com.ljp.wanandroid.network.api.SearchApiService
 import com.ljp.wanandroid.network.api.UserApiService
 import com.ljp.wanandroid.network.repository.ArticleRepository
 import com.ljp.wanandroid.network.repository.SearchRepository
+import com.ljp.wanandroid.network.repository.TestRepository
 import com.ljp.wanandroid.network.repository.UserRepository
 import dagger.Module
 import dagger.Provides
@@ -38,6 +39,12 @@ object RepositoryModule {
     @ViewModelScoped
     fun provideSearchRepository(searchApiService: SearchApiService): SearchRepository {
         return SearchRepository(searchApiService)
+    }
+
+    @Provides
+    @ViewModelScoped
+    fun provideTestRepository(articleApiService: ArticleApiService,userApiService: UserApiService): TestRepository {
+        return TestRepository(articleApiService,userApiService)
     }
 
 }

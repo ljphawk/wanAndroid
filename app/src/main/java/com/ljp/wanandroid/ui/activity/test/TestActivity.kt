@@ -1,20 +1,25 @@
-package com.ljp.wanandroid.test.activity
+package com.ljp.wanandroid.ui.activity.test
 
 import android.os.Bundle
 import android.view.View
+import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ljp.wanandroid.test.fragment.tab1.TabFragment1
-import com.ljp.wanandroid.test.fragment.TabFragment2
-import com.ljp.wanandroid.test.fragment.TabFragment3
+import com.ljp.wanandroid.ui.fragment.test.tab1.TabFragment1
+import com.ljp.wanandroid.ui.fragment.test.TabFragment2
+import com.ljp.wanandroid.ui.fragment.test.TabFragment3
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ljp.wanandroid.databinding.ActivityTestBinding
 import com.ljp.wanandroid.ui.activity.main.MainActivity
 import com.qszx.base.ui.BaseBindingActivity
-import com.qszx.utils.extensions.gone
+import com.qszx.respository.extensions.launchAndCollect
+import com.qszx.respository.extensions.launchAndCollectIn
 import com.qszx.utils.extensions.noQuickClick
 import com.qszx.utils.extensions.startActivity
+import dagger.hilt.android.AndroidEntryPoint
+import dagger.hilt.android.scopes.ActivityScoped
 
+@AndroidEntryPoint
 class TestActivity : BaseBindingActivity<ActivityTestBinding>() {
 
     override fun immersionBarView(): View {
@@ -28,7 +33,6 @@ class TestActivity : BaseBindingActivity<ActivityTestBinding>() {
             startActivity<MainActivity>()
             finish()
         }
-
         initTabLayoutAndViewPager2()
     }
 
