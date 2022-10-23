@@ -1,14 +1,10 @@
 package com.ljp.wanandroid.ui.activity.test
 
-import com.ljp.wanandroid.model.ArticleBean
-import com.ljp.wanandroid.model.WxArticleBean
-import com.ljp.wanandroid.network.base.ApiResponse
-import com.ljp.wanandroid.network.repository.TestRepository
+import com.qszx.respository.data.ArticleBean
+import com.qszx.respository.network.repository.TestRepository
 import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.network.BaseApiResponse
-import dagger.hilt.android.AndroidEntryPoint
+import com.qszx.respository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
-import dagger.hilt.android.scopes.ViewModelScoped
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.asSharedFlow
@@ -27,14 +23,14 @@ class TestViewModel @Inject constructor(private val testRepository: TestReposito
     BaseViewModel() {
 
     private val _homeTopArticle =
-        MutableStateFlow<BaseApiResponse<MutableList<ArticleBean>>>(ApiResponse())
+        MutableStateFlow<ApiResponse<MutableList<ArticleBean>>>(ApiResponse())
     var homeTopArticle = _homeTopArticle.asStateFlow()
 
     suspend fun getHomeTopArticle() {
         _homeTopArticle.value = testRepository.getHomeTopArticle()
     }
 
-    private val _homeTopArticle2 = MutableSharedFlow<BaseApiResponse<MutableList<ArticleBean>>>()
+    private val _homeTopArticle2 = MutableSharedFlow<ApiResponse<MutableList<ArticleBean>>>()
     var homeTopArticle2 = _homeTopArticle2.asSharedFlow()
 
     suspend fun getHomeTopArticle2() {
@@ -43,4 +39,10 @@ class TestViewModel @Inject constructor(private val testRepository: TestReposito
     }
 
     suspend fun getHomeBannerList() = testRepository.getHomeBannerList()
+
+//    val homeHotArticle2Trigger = MutableLiveData<Boolean>()
+//    val homeHotArticle2 = Transformations.switchMap(homeHotArticle2Trigger) {
+//        testRepository.getHomeHotArticle2()
+//    }
+
 }

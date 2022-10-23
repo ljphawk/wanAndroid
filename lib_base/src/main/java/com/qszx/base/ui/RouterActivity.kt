@@ -82,8 +82,8 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
     /**
      * 通过正则匹配“{}”内的参数并替换
      */
-    fun navigate(deepLink: String, args: Bundle? = null) {
-        var newDeepLink = "http://fragment.example.com/$deepLink"
+    open fun navigate(deepLink: String, args: Bundle? = null) {
+        var newDeepLink = "http://fragment.ljp.com/$deepLink"
         args?.apply {
             val matcher = Pattern.compile("(\\{)(.+?)(\\})").matcher(newDeepLink)
             while (matcher.find()) {
@@ -93,7 +93,9 @@ abstract class RouterActivity<VB : ViewBinding> : BaseBindingActivity<VB>() {
                 }
             }
         }
-        navController.navigate(Uri.parse(newDeepLink), getNavOptions())
+        val parse = Uri.parse(newDeepLink)
+
+        navController.navigate(parse, getNavOptions())
     }
 
     fun popBackStack(@IdRes destinationId: Int, inclusive: Boolean) {

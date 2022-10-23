@@ -13,7 +13,6 @@
         <action
             android:id="@+id/action_mainFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
-
         <action
             android:id="@+id/action_mainFragment_to_searchFragment"
             app:destination="@id/searchFragment" />
@@ -26,7 +25,10 @@
         android:id="@+id/loginFragment"
         android:name="com.ljp.wanandroid.ui.fragment.login.LoginFragment"
         android:label="LoginFragment"
-        tools:layout="@layout/fragment_login" />
+        tools:layout="@layout/fragment_login" >
+
+        <deepLink app:uri="fragment.ljp.com/user/login" />
+    </fragment>
 
     <fragment
         android:id="@+id/searchFragment"
@@ -37,21 +39,20 @@
             android:name="content"
             app:argType="string"
             app:nullable="true" />
-        <action
-            android:id="@+id/action_searchFragment_to_webViewFragment"
-            app:destination="@id/webViewFragment" />
-        <action
-            android:id="@+id/action_searchFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+        <deepLink app:uri="fragment.ljp.com/search/{content}" />
     </fragment>
     <fragment
         android:id="@+id/webViewFragment"
-        android:name="com.ljp.wanandroid.ui.fragment.webview.WebViewFragment"
+        android:name="com.ljp.wanandroid.ui.fragment.webview.WebFragment"
         android:label="WebViewFragment" >
+        <!--
+           通过将占位符名称与已定义的参数（为深层链接目的地所定义）相匹配，尝试将占位符值解析为相应的类型
+       -->
         <argument
             android:name="url"
             app:argType="string"
             app:nullable="true" />
+        <deepLink app:uri="fragment.ljp.com/web/{url}" />
     </fragment>
 
 </navigation>

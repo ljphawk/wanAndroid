@@ -10,8 +10,8 @@ import com.example.lib_imageload.glide.loadImage
 import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.ItemMineRvBinding
 import com.ljp.wanandroid.databinding.LayoutLeftMineBinding
-import com.ljp.wanandroid.model.MineItemBean
-import com.ljp.wanandroid.preference.UserPreference
+import com.ljp.wanandroid.data.MineItemBean
+import com.qszx.respository.preference.UserPreference
 import com.qszx.base.ui.BaseBindingLayout
 import com.qszx.utils.showToast
 

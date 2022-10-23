@@ -4,7 +4,7 @@ import com.dylanc.viewbinding.getBinding
 import com.example.lib_imageload.glide.loadImage
 import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.ItemHomeBannerBinding
-import com.ljp.wanandroid.model.HomeBannerBean
+import com.qszx.respository.data.HomeBannerBean
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder
 

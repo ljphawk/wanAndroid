@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.Observer
 import com.ljp.wanandroid.databinding.FragmentTab1Binding
 import com.ljp.wanandroid.ui.activity.test.TestViewModel
 import com.ljp.wanandroid.utils.LOG
@@ -33,7 +34,7 @@ class TabFragment1 : BaseBindingFragment<FragmentTab1Binding>() {
 
     private fun initFlowState() {
         //请求方式1
-        testViewModel.homeTopArticle.launchAndCollectIn(this,Lifecycle.State.STARTED) {
+        testViewModel.homeTopArticle.launchAndCollectIn(this, Lifecycle.State.STARTED) {
             onSuccess = {
                 setRequestText("请求方式1的结果数据: \n${it.toString()}")
             }
@@ -49,10 +50,13 @@ class TabFragment1 : BaseBindingFragment<FragmentTab1Binding>() {
 
             }
         }
+//        testViewModel.homeHotArticle2.observe(this, Observer {
+//            setRequestText("请求方式4的结果数据: \n${it.toString()}")
+//        })
     }
 
     private fun setRequestText(content: String?) {
-        LOG.d("===ljp",content)
+        LOG.d("===ljp", content)
         binding.tvContent.text = content
     }
 
@@ -69,6 +73,9 @@ class TabFragment1 : BaseBindingFragment<FragmentTab1Binding>() {
         }
         binding.btRequest3.setOnClickListener {
             requestFunction()
+        }
+        binding.btRequest4.setOnClickListener {
+//            testViewModel.homeHotArticle2Trigger.value = true
         }
 
     }

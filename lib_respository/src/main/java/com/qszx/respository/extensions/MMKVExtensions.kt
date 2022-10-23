@@ -1,7 +1,7 @@
 package com.qszx.respository.extensions
 
 import android.os.Parcelable
-import com.qszx.respository.preference.BasePreference
+import com.qszx.respository.preference.base.BasePreference
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

@@ -2,15 +2,17 @@ package com.ljp.wanandroid.ui.fragment.home
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.core.view.GravityCompat
 import androidx.fragment.app.viewModels
 import com.example.lib_imageload.glide.loadImageCircleCrop
+import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
-import com.ljp.wanandroid.model.SearchHotKeyBean
-import com.ljp.wanandroid.preference.ConfigPreference
-import com.ljp.wanandroid.preference.UserPreference
+import com.qszx.respository.data.SearchHotKeyBean
+import com.qszx.respository.preference.ConfigPreference
+import com.qszx.respository.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
-import com.ljp.wanandroid.ui.fragment.main.MainFragmentDirections
+import com.ljp.wanandroid.ui.fragment.search.SearchFragment
 import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect
@@ -60,11 +62,11 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
             }
         }
         binding.marqueeView.setOnClickListener {
-            routerActivity?.navigate(MainFragmentDirections.actionMainFragmentToSearchFragment(""))
+            routerActivity?.navigate(Router.SEARCH)
         }
         binding.marqueeView.setOnItemClickListener { _, textView ->
-            routerActivity?.navigate(MainFragmentDirections.actionMainFragmentToSearchFragment(
-                textView.text.toString()))
+            routerActivity?.navigate(Router.SEARCH,
+                bundleOf(SearchFragment.KEY_SEARCH to textView.text.toString()))
         }
     }
 
@@ -92,7 +94,9 @@ class HomeFragment : BaseBindingFragment<FragmentHomeBinding>() {
     }
 
     private fun setSearchHotKeyAdapter() {
-        val data = parseList(ConfigPreference.searchHotKey, SearchHotKeyBean::class.java)
+        val data = parseList(ConfigPreference.searchHotKey, SearchHotKeyBean::class.java).map {
+            it.name
+        }
         binding.marqueeView.startWithList(data)
     }
 

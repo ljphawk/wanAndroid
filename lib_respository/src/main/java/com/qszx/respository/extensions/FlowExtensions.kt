@@ -3,9 +3,7 @@ package com.qszx.respository.extensions
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import com.qszx.base.ui.IUiView
-import com.qszx.respository.network.ResultBuilder
-import com.qszx.respository.network.BaseApiResponse
-import com.qszx.respository.network.parseData
+import com.qszx.respository.network.base.ApiResponse
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 
@@ -31,7 +29,7 @@ fun IUiView.launch(showLoading: Boolean = true, requestBlock: suspend () -> Unit
  * 启动网络请求 loading 并收集结果
  */
 fun <T> IUiView.launchAndCollect(
-    requestBlock: suspend () -> BaseApiResponse<T>,
+    requestBlock: suspend () -> ApiResponse<T>,
     showLoading: Boolean = true,
     showErrorToast: Boolean = true,
     listenerBuilder: (ResultBuilder<T>.() -> Unit)?,
@@ -52,9 +50,9 @@ fun <T> IUiView.launchAndCollect(
 }
 
 fun <T1, T2, R> IUiView.launchZipAndCollect(
-    requestBlock1: suspend () -> BaseApiResponse<T1>,
-    requestBlock2: suspend () -> BaseApiResponse<T2>,
-    listener: (BaseApiResponse<T1>, BaseApiResponse<T2>) -> BaseApiResponse<R>,
+    requestBlock1: suspend () -> ApiResponse<T1>,
+    requestBlock2: suspend () -> ApiResponse<T2>,
+    listener: (ApiResponse<T1>, ApiResponse<T2>) -> ApiResponse<R>,
     showLoading: Boolean = true,
     showErrorToast: Boolean = true,
     listenerBuilder: (ResultBuilder<R>.() -> Unit)?,
@@ -84,7 +82,7 @@ private fun IUiView.getScope(): LifecycleCoroutineScope {
 }
 
 
-fun <T> Flow<BaseApiResponse<T>>.launchAndCollectIn(
+fun <T> Flow<ApiResponse<T>>.launchAndCollectIn(
     owner: LifecycleOwner,
     minActiveState: Lifecycle.State = Lifecycle.State.CREATED,
     showErrorToast: Boolean = true,
@@ -93,7 +91,7 @@ fun <T> Flow<BaseApiResponse<T>>.launchAndCollectIn(
     if (owner is Fragment) {
         owner.viewLifecycleOwner.lifecycleScope.launch {
             owner.viewLifecycleOwner.repeatOnLifecycle(minActiveState) {
-                collect { apiResponse: BaseApiResponse<T> ->
+                collect { apiResponse: ApiResponse<T> ->
                     apiResponse.parseData(listenerBuilder, showErrorToast)
                 }
             }
@@ -101,7 +99,7 @@ fun <T> Flow<BaseApiResponse<T>>.launchAndCollectIn(
     } else {
         owner.lifecycleScope.launch {
             owner.repeatOnLifecycle(minActiveState) {
-                collect { apiResponse: BaseApiResponse<T> ->
+                collect { apiResponse: ApiResponse<T> ->
                     apiResponse.parseData(listenerBuilder, showErrorToast)
                 }
             }

@@ -3,12 +3,13 @@ package com.ljp.wanandroid.ui.activity.main
 import androidx.fragment.app.Fragment
 import com.flyco.tablayout.listener.CustomTabEntity
 import com.ljp.wanandroid.R
-import com.ljp.wanandroid.model.HomeTabLayoutData
+import com.ljp.wanandroid.data.HomeTabLayoutData
 import com.ljp.wanandroid.ui.fragment.home.HomeFragment
 import com.ljp.wanandroid.ui.fragment.navigation.NavigationFragment
 import com.ljp.wanandroid.ui.fragment.project.ProjectFragment
 import com.ljp.wanandroid.ui.fragment.question.QuestionFragment
 import com.qszx.base.ui.BaseViewModel
+import com.qszx.respository.preference.UserPreference
 import java.util.ArrayList
 
 
@@ -19,14 +20,23 @@ import java.util.ArrayList
  */
 class MainViewModel : BaseViewModel() {
 
-    private val needLoginPageActionId = mutableSetOf<Int>()
+    private val needLoginActionId = mutableSetOf<Int>()
+    private val needLoginRouterPath = mutableSetOf<String>()
 
     fun getHomeTabLayoutData(): ArrayList<CustomTabEntity> {
         val list = arrayListOf<CustomTabEntity>()
-        list.add(HomeTabLayoutData("首页", R.drawable.icon_home_select, R.drawable.icon_home_unselect))
-        list.add(HomeTabLayoutData("导航", R.drawable.icon_home_select, R.drawable.icon_home_unselect))
-        list.add(HomeTabLayoutData("问答", R.drawable.icon_home_select, R.drawable.icon_home_unselect))
-        list.add(HomeTabLayoutData("项目", R.drawable.icon_home_select, R.drawable.icon_home_unselect))
+        list.add(HomeTabLayoutData("首页",
+            R.drawable.icon_home_select,
+            R.drawable.icon_home_unselect))
+        list.add(HomeTabLayoutData("导航",
+            R.drawable.icon_home_select,
+            R.drawable.icon_home_unselect))
+        list.add(HomeTabLayoutData("问答",
+            R.drawable.icon_home_select,
+            R.drawable.icon_home_unselect))
+        list.add(HomeTabLayoutData("项目",
+            R.drawable.icon_home_select,
+            R.drawable.icon_home_unselect))
         return list
     }
 
@@ -40,6 +50,10 @@ class MainViewModel : BaseViewModel() {
     }
 
     fun actionIdNeedLogin(actionId: Int): Boolean {
-        return needLoginPageActionId.contains(actionId)
+        return needLoginActionId.contains(actionId) && !UserPreference.isLogin()
+    }
+
+    fun pathNeedLogin(path: String): Boolean {
+        return needLoginRouterPath.contains(path) && !UserPreference.isLogin()
     }
 }

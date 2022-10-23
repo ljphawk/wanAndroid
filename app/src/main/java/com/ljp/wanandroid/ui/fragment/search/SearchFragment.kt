@@ -1,32 +1,24 @@
 package com.ljp.wanandroid.ui.fragment.search
 
-import android.content.Context
 import android.os.Bundle
-import android.view.KeyEvent
-import android.view.LayoutInflater
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import androidx.navigation.fragment.navArgs
 import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentSearchBinding
 import com.ljp.wanandroid.databinding.ItemSearchHotKeyBinding
-import com.ljp.wanandroid.db.SearchDb
+import com.qszx.respository.dao.SearchHistoryDao
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setTextAndSelection
-import com.ljp.wanandroid.model.SearchHotKeyBean
-import com.ljp.wanandroid.preference.ConfigPreference
+import com.qszx.respository.data.SearchHotKeyBean
+import com.qszx.respository.preference.ConfigPreference
 import com.ljp.wanandroid.ui.fragment.articlelist.ArticleListFragment
 import com.ljp.wanandroid.ui.fragment.articlelist.ArticleListParams
-import com.ljp.wanandroid.utils.LOG
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.parseList
 import com.qszx.utils.CommUtils
 import com.qszx.utils.extensions.*
-import com.qszx.utils.showToast
 import com.zhy.view.flowlayout.FlowLayout
 import com.zhy.view.flowlayout.TagAdapter
 import com.zhy.view.flowlayout.TagFlowLayout
@@ -42,7 +34,12 @@ import kotlinx.coroutines.*
 @AndroidEntryPoint
 class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
 
-    private val args by navArgs<SearchFragmentArgs>()
+    companion object {
+        const val KEY_SEARCH = "content"
+    }
+
+    private val argsSearch by getBundleParam(KEY_SEARCH, "")
+
     private val articleListFragment by lazy {
         ArticleListFragment.newInstance(ArticleListParams.getSearchParams())
     }
@@ -69,15 +66,14 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
         }
         binding.tvClearHistory.noQuickClick {
             //TODO 二次确认
-            SearchDb.clearSearchHistory()
+            SearchHistoryDao.clearSearchHistory()
             initSearchHistory()
         }
     }
 
     private fun initSearchEdittext() {
-        val content = args.content ?: ""
-        if (binding.ivClearContent.show(content.contentHasValue())) {
-            binding.etSearch.setTextAndSelection(content)
+        if (binding.ivClearContent.show(argsSearch.contentHasValue())) {
+            binding.etSearch.setTextAndSelection(argsSearch!!)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
@@ -99,10 +95,10 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
     private fun initSearchHotKey() {
         lifecycleScope.launch {
             val hotKeyData = withContext(Dispatchers.IO) {
-                parseList(
-                    ConfigPreference.searchHotKey,
-                    SearchHotKeyBean::class.java
-                )
+                parseList(ConfigPreference.searchHotKey,
+                    SearchHotKeyBean::class.java).filter { it.name.contentHasValue() }.map {
+                    it.name!!
+                }
             }
             initFlowlayout(binding.hotKeyFlowlayout, hotKeyData)
         }
@@ -110,24 +106,24 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
 
     private fun initSearchHistory() {
         lifecycleScope.launch {
-            val historyData = withContext(Dispatchers.IO) { SearchDb.getSearchHistory() }
+            val historyData = withContext(Dispatchers.IO) { SearchHistoryDao.getSearchHistory() }
             if (binding.llSearchHistory.show(historyData.hasContent())) {
                 initFlowlayout(binding.historyFlowlayout, historyData)
             }
         }
     }
 
-    private fun initFlowlayout(flowLayout: TagFlowLayout, list: List<SearchHotKeyBean>) {
+    private fun initFlowlayout(flowLayout: TagFlowLayout, list: List<String>) {
         var lastRemoveView: ImageView? = null
-        flowLayout.adapter = object : TagAdapter<SearchHotKeyBean>(list) {
+        flowLayout.adapter = object : TagAdapter<String>(list) {
             override fun getView(
                 parent: FlowLayout?,
                 position: Int,
-                data: SearchHotKeyBean?,
+                data: String,
             ): View {
                 val itemBinding = ItemSearchHotKeyBinding.inflate(layoutInflater, parent, false)
 
-                itemBinding.tvItem.text = data?.marqueeMessage()
+                itemBinding.tvItem.text = data
                 itemBinding.ivRemove.gone()
 
                 itemBinding.root.setOnLongClickListener {
@@ -140,12 +136,14 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
                 }
                 if (flowLayout == binding.historyFlowlayout) {
                     itemBinding.ivRemove.setOnClickListener {
-                        data?.delete()
+                        viewLifecycleOwner.lifecycleScope.launch {
+                            SearchHistoryDao.removeSearchHistory(data)
+                        }
                         initSearchHistory()
                     }
                 }
                 itemBinding.root.noQuickClick {
-                    search(data?.name ?: "")
+                    search(data)
                 }
                 return itemBinding.root
             }
@@ -155,7 +153,7 @@ class SearchFragment : BaseBindingFragment<FragmentSearchBinding>() {
     private fun saveSearchHotKey(data: SearchHotKeyBean) {
         lifecycleScope.launch {
             val save = async {
-                SearchDb.saveSearchHistory(data)
+                SearchHistoryDao.saveSearchHistory(data)
             }
             if (save.await()) {
                 initSearchHistory()

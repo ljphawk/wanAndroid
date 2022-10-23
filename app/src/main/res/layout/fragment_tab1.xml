@@ -36,6 +36,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="请求和结果处理都在一起,viewModel中不需要创建flow或者liveData对象,适用于不需要监听数据变化的常见.屏幕旋转和Activity重新后数据会消失" />
+    <Button
+        android:id="@+id/bt_request4"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:text="liveData" />
 
     <TextView
         android:id="@+id/tv_content"

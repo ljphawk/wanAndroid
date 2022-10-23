@@ -53,7 +53,7 @@ import androidx.annotation.Nullable;
 import androidx.core.content.ContextCompat;
 
 
-import com.qszx.base.BaseApplication;
+import com.qszx.base.app.BaseApplication;
 
 import java.io.InputStream;
 import java.io.Serializable;

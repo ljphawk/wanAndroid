@@ -66,6 +66,8 @@ ext {
             mmkv               : "com.tencent:mmkv-static:1.2.10",
             stetho             : "com.facebook.stetho:stetho:1.6.0",
             stetho_okhttp      : "com.facebook.stetho:stetho-okhttp3:1.6.0",
+            //https://github.com/guolindev/LitePal
+            guolindev_litepal            : "org.litepal.guolindev:core:3.2.2",
     ]
 
     //依赖引入
@@ -76,8 +78,6 @@ ext {
             logger                       : "com.orhanobut:logger:2.2.0",
             //https://github.com/greenrobot/EventBus
             eventBus                     : "org.greenrobot:eventbus:3.3.1",
-            //https://github.com/guolindev/LitePal
-            guolindev_litepal            : "org.litepal.guolindev:core:3.2.2",
             //https://github.com/CymChad/BaseRecyclerViewAdapterHelper
             baseRecyclerViewAdapterHelper: "com.github.CymChad:BaseRecyclerViewAdapterHelper:3.0.7",
             //https://github.com/fondesa/recycler-view-divider

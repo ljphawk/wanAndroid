@@ -13,7 +13,7 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentLoginBinding
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setAnimStatusListener
-import com.ljp.wanandroid.preference.UserPreference
+import com.qszx.respository.preference.UserPreference
 import com.ljp.wanandroid.utils.SpanUtils
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect

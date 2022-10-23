@@ -7,7 +7,7 @@ import com.drake.brv.PageRefreshLayout
 import com.drake.statelayout.StateConfig
 import com.facebook.stetho.Stetho
 import com.ljp.wanandroid.R
-import com.qszx.base.BaseApplication
+import com.qszx.base.app.BaseApplication
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
@@ -26,8 +26,7 @@ object SdkInitManager {
 
     fun init() {
         initX5WebView()
-        LitePal.initialize(BaseApplication.instance)
-        Stetho.initializeWithDefaults(BaseApplication.instance)
+
         initSmartRefresh()
     }
 

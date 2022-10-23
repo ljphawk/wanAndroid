@@ -1,7 +1,9 @@
 package com.ljp.wanandroid.ui.fragment.articlelist
 
+import android.net.Uri
 import android.os.Bundle
 import android.view.View
+import androidx.core.os.bundleOf
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.drake.brv.utils.bindingAdapter
@@ -9,23 +11,22 @@ import com.drake.brv.utils.linear
 import com.drake.brv.utils.setup
 import com.dylanc.viewbinding.getBinding
 import com.ljp.wanandroid.R
+import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.FragmentHotBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
 import com.ljp.wanandroid.eventbus.AppEvent
 import com.ljp.wanandroid.eventbus.CollectEvent
-import com.ljp.wanandroid.model.ArticleBean
-import com.ljp.wanandroid.model.ArticleListBean
-import com.ljp.wanandroid.model.HomeBannerBean
-import com.ljp.wanandroid.preference.UserPreference
+import com.qszx.respository.data.ArticleBean
+import com.qszx.respository.data.ArticleListBean
+import com.qszx.respository.data.HomeBannerBean
+import com.qszx.respository.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.hot.binding
-import com.ljp.wanandroid.ui.fragment.main.MainFragmentDirections
-import com.ljp.wanandroid.ui.fragment.search.SearchFragmentDirections
 import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
-import com.ljp.wanandroid.utils.LOG
+import com.ljp.wanandroid.ui.fragment.webview.WebFragment
 import com.qszx.base.ui.BaseBindingFragment
 import com.qszx.respository.extensions.launchAndCollect
-import com.qszx.respository.network.BaseApiResponse
+import com.qszx.respository.network.base.ApiResponse
 import com.qszx.utils.extensions.getBundleParam
 import com.qszx.utils.extensions.hasContent
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,10 +80,12 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
                 when (itemViewType) {
                     R.layout.item_hot_article_head_view -> {
                         getBinding<ItemHotArticleHeadViewBinding>().binding(
-                            context,
                             viewLifecycleOwner,
                             getModel()
-                        )
+                        ) {
+                            routerActivity?.navigate(Router.WEB,
+                                bundleOf(WebFragment.KEY_URL to Uri.encode(it)))
+                        }
                     }
 
                     R.layout.item_hot_article_view -> {
@@ -109,12 +112,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
     }
 
     private fun articleItemClick(data: ArticleBean) {
-        val directions = if (args.type is SearchArticleParams) {
-            SearchFragmentDirections.actionSearchFragmentToWebViewFragment(data.link)
-        } else {
-            MainFragmentDirections.actionMainFragmentToWebViewFragment(data.link)
-        }
-        routerActivity?.navigate(directions)
+        routerActivity?.navigate(Router.WEB, bundleOf(WebFragment.KEY_URL to Uri.encode(data.link)))
     }
 
     private fun getPageIndex(): Int {
@@ -166,9 +164,9 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
             val flow3 = flow { emit(articleViewModel.getHomeHotArticle(getPageIndex())) }
             combine(flow1, flow2, flow3) { a, b, c ->
                 binding.recyclerView.bindingAdapter.clearHeader()
-                binding.recyclerView.bindingAdapter.addHeader(a.data())
+                binding.recyclerView.bindingAdapter.addHeader(a.data)
                 binding.pageRefreshLayout.addData(articleZipData(b, c)?.datas) {
-                    !(c.data()?.over ?: false)
+                    !(c.data?.over ?: false)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope).start()
         } else {
@@ -177,14 +175,14 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
     }
 
     private fun articleZipData(
-        data1: BaseApiResponse<MutableList<ArticleBean>>,
-        data2: BaseApiResponse<ArticleListBean>,
+        data1: ApiResponse<MutableList<ArticleBean>>,
+        data2: ApiResponse<ArticleListBean>,
     ): ArticleListBean? {
-        if (data2.data()?.datas == null) {
-            data2.data()?.datas = mutableListOf()
+        if (data2.data?.datas == null) {
+            data2.data?.datas = mutableListOf()
         }
-        data2.data()?.datas?.addAll(0, data1.data() ?: mutableListOf())
-        return data2.data()
+        data2.data?.datas?.addAll(0, data1.data ?: mutableListOf())
+        return data2.data
     }
 
     /**
@@ -193,7 +191,7 @@ class ArticleListFragment : BaseBindingFragment<FragmentHotBinding>() {
     private fun requestGetArticleListData(
         showLoading: Boolean = false,
         complete: () -> Unit = {},
-        function: suspend () -> BaseApiResponse<ArticleListBean>,
+        function: suspend () -> ApiResponse<ArticleListBean>,
     ) {
         launchAndCollect(
             function,

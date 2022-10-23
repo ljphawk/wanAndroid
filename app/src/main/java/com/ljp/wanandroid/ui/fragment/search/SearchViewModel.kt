@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.ui.fragment.search
 
-import com.ljp.wanandroid.network.repository.SearchRepository
+import com.qszx.respository.network.repository.SearchRepository
 import com.qszx.base.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

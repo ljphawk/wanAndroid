@@ -1,8 +1,8 @@
 package com.ljp.wanandroid.ui.fragment.articlelist
 
-import com.ljp.wanandroid.network.repository.ArticleRepository
+import com.qszx.respository.network.repository.ArticleRepository
 import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.network.BaseApiResponse
+import com.qszx.respository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
@@ -49,7 +49,7 @@ class ArticleViewModel @Inject constructor(private val articleRepository: Articl
     /**
      * 收藏 ||  取消收藏
      */
-    suspend fun collect(collect:Boolean, id: Long): BaseApiResponse<Any> {
+    suspend fun collect(collect:Boolean, id: Long): ApiResponse<Any> {
         return if (collect) {
             articleRepository.cancelCollect(id)
         } else {

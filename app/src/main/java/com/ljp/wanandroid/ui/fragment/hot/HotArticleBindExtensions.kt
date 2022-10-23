@@ -4,11 +4,11 @@ import android.content.Context
 import android.text.Html
 import androidx.lifecycle.LifecycleOwner
 import com.example.lib_imageload.glide.loadImage
-import com.ljp.wanandroid.constant.UrlConstant
+import com.qszx.respository.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
-import com.ljp.wanandroid.model.ArticleBean
-import com.ljp.wanandroid.model.HomeBannerBean
+import com.qszx.respository.data.ArticleBean
+import com.qszx.respository.data.HomeBannerBean
 import com.ljp.wanandroid.ui.fragment.home.HomeBannerAdapter
 import com.qszx.utils.RegexUtils
 import com.qszx.utils.extensions.contentHasValue
@@ -23,9 +23,9 @@ import com.qszx.utils.showToast
  */
 
 fun ItemHotArticleHeadViewBinding.binding(
-    context: Context,
     lifecycle: LifecycleOwner,
     listData: MutableList<HomeBannerBean>,
+    itemClick: (url: String?) -> Unit,
 ) {
     if (bannerView.adapter == null) {
         bannerView.apply {
@@ -33,8 +33,7 @@ fun ItemHotArticleHeadViewBinding.binding(
             setLifecycleRegistry(lifecycle.lifecycle)
             setOnPageClickListener { _, position ->
                 val data = bannerView.data[position] as HomeBannerBean?
-                context.showToast(data?.url)
-                //TODO
+                itemClick.invoke(data?.url)
             }
         }.create(listData)
     } else {
@@ -42,7 +41,7 @@ fun ItemHotArticleHeadViewBinding.binding(
     }
 }
 
-fun ItemHotArticleViewBinding.binding( data: ArticleBean) {
+fun ItemHotArticleViewBinding.binding(data: ArticleBean) {
     civAvatar.loadImage(UrlConstant.getAvatarUrl(data.getAuthorText()))
     tvAuthor.text = data.getAuthorText()
     tvTime.text = data.niceDate
