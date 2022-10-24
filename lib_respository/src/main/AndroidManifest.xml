@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.qszx.respository">
+    package="com.ljp.respository">
 
     <application>
         <meta-data
-            android:name="com.qszx.respository.app.RepositoryApplicationDelegate"
+            android:name="com.ljp.respository.app.RepositoryApplicationDelegate"
             android:value="ApplicationDelegate" />
     </application>
 </manifest>

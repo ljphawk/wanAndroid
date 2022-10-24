@@ -8,7 +8,7 @@ import androidx.lifecycle.DefaultLifecycleObserver
 import androidx.lifecycle.LifecycleOwner
 import com.ljp.wanandroid.BuildConfig
 import com.ljp.wanandroid.manager.WebViewManager
-import com.qszx.utils.showToast
+import com.ljp.lib_base.utils.showToast
 import com.tencent.smtt.export.external.interfaces.*
 import com.tencent.smtt.sdk.WebChromeClient
 import com.tencent.smtt.sdk.WebView

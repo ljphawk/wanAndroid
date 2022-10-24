@@ -13,7 +13,7 @@
     <version value="1" />
 
     <list>
-        <mapping class="com.qszx.respository.data.SearchHotKeyBean" />
+        <mapping class="com.ljp.respository.data.SearchHotKeyBean" />
     </list>
 
 </litepal>

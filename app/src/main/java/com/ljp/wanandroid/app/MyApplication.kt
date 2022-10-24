@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.app
 
-import com.qszx.base.app.BaseApplication
+import com.ljp.module_base.app.BaseApplication
 import com.tencent.mmkv.MMKV
 import dagger.hilt.android.HiltAndroidApp
 

@@ -1,7 +1,6 @@
 package com.ljp.wanandroid.extensions
 
 import androidx.constraintlayout.motion.widget.MotionLayout
-import com.ljp.wanandroid.utils.LOG
 
 
 /*

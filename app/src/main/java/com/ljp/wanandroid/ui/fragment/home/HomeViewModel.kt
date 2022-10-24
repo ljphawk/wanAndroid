@@ -2,7 +2,7 @@ package com.ljp.wanandroid.ui.fragment.home
 
 import androidx.fragment.app.Fragment
 import com.ljp.wanandroid.ui.fragment.articlelist.*
-import com.qszx.base.ui.BaseViewModel
+import com.ljp.module_base.ui.BaseViewModel
 
 
 /*

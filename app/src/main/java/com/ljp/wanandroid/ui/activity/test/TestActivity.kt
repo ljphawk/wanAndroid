@@ -2,7 +2,6 @@ package com.ljp.wanandroid.ui.activity.test
 
 import android.os.Bundle
 import android.view.View
-import androidx.activity.viewModels
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.ljp.wanandroid.ui.fragment.test.tab1.TabFragment1
@@ -11,13 +10,10 @@ import com.ljp.wanandroid.ui.fragment.test.TabFragment3
 import com.google.android.material.tabs.TabLayoutMediator
 import com.ljp.wanandroid.databinding.ActivityTestBinding
 import com.ljp.wanandroid.ui.activity.main.MainActivity
-import com.qszx.base.ui.BaseBindingActivity
-import com.qszx.respository.extensions.launchAndCollect
-import com.qszx.respository.extensions.launchAndCollectIn
-import com.qszx.utils.extensions.noQuickClick
-import com.qszx.utils.extensions.startActivity
+import com.ljp.module_base.ui.BaseBindingActivity
+import com.ljp.lib_base.extensions.noQuickClick
+import com.ljp.lib_base.extensions.startActivity
 import dagger.hilt.android.AndroidEntryPoint
-import dagger.hilt.android.scopes.ActivityScoped
 
 @AndroidEntryPoint
 class TestActivity : BaseBindingActivity<ActivityTestBinding>() {

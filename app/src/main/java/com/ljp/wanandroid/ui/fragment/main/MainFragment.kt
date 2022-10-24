@@ -9,7 +9,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener
 import com.ljp.wanandroid.databinding.FragmentMainBinding
 import com.ljp.wanandroid.ui.activity.main.MainViewModel
 import com.ljp.wanandroid.widget.SpeedDrawerLayout
-import com.qszx.base.ui.BaseBindingFragment
+import com.ljp.module_base.ui.BaseBindingFragment
 
 
 /*

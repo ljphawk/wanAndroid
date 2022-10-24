@@ -8,8 +8,8 @@ import com.ljp.wanandroid.ui.fragment.home.HomeFragment
 import com.ljp.wanandroid.ui.fragment.navigation.NavigationFragment
 import com.ljp.wanandroid.ui.fragment.project.ProjectFragment
 import com.ljp.wanandroid.ui.fragment.question.QuestionFragment
-import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.preference.UserPreference
+import com.ljp.module_base.ui.BaseViewModel
+import com.ljp.respository.preference.UserPreference
 import java.util.ArrayList
 
 

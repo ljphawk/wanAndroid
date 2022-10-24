@@ -6,7 +6,7 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.ActivityMainBinding
 import com.ljp.wanandroid.manager.SdkInitManager
-import com.qszx.base.ui.RouterActivity
+import com.ljp.module_base.ui.RouterActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint

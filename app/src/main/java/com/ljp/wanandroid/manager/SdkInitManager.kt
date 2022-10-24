@@ -5,16 +5,14 @@ import android.os.Build
 import androidx.core.content.ContextCompat
 import com.drake.brv.PageRefreshLayout
 import com.drake.statelayout.StateConfig
-import com.facebook.stetho.Stetho
 import com.ljp.wanandroid.R
-import com.qszx.base.app.BaseApplication
+import com.ljp.module_base.app.BaseApplication
 import com.scwang.smart.refresh.footer.ClassicsFooter
 import com.scwang.smart.refresh.header.MaterialHeader
 import com.scwang.smart.refresh.layout.SmartRefreshLayout
 import com.tencent.smtt.export.external.TbsCoreSettings
 import com.tencent.smtt.sdk.QbSdk
 import com.tencent.smtt.sdk.WebView
-import org.litepal.LitePal
 
 
 /*

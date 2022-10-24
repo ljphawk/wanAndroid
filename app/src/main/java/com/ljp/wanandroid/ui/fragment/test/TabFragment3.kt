@@ -3,7 +3,7 @@ package com.ljp.wanandroid.ui.fragment.test
 import android.os.Bundle
 import android.view.View
 import com.ljp.wanandroid.databinding.FragmentTab3Binding
-import com.qszx.base.ui.BaseBindingFragment
+import com.ljp.module_base.ui.BaseBindingFragment
 
 
 /*

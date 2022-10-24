@@ -10,10 +10,10 @@ import com.hjq.bar.OnTitleBarListener
 import com.hjq.bar.TitleBar
 import com.ljp.wanandroid.databinding.FragmentWebViewBinding
 import com.ljp.wanandroid.manager.WebViewManager
-import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.utils.extensions.getBundleParam
-import com.qszx.utils.extensions.gone
-import com.qszx.utils.extensions.visible
+import com.ljp.module_base.ui.BaseBindingFragment
+import com.ljp.lib_base.extensions.getBundleParam
+import com.ljp.lib_base.extensions.gone
+import com.ljp.lib_base.extensions.visible
 import com.tencent.smtt.sdk.WebView
 
 

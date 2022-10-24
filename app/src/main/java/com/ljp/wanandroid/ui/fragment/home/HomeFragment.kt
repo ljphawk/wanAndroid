@@ -8,17 +8,17 @@ import androidx.fragment.app.viewModels
 import com.example.lib_imageload.glide.loadImageCircleCrop
 import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
-import com.qszx.respository.data.SearchHotKeyBean
-import com.qszx.respository.preference.ConfigPreference
-import com.qszx.respository.preference.UserPreference
+import com.ljp.respository.data.SearchHotKeyBean
+import com.ljp.respository.preference.ConfigPreference
+import com.ljp.respository.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
 import com.ljp.wanandroid.ui.fragment.search.SearchFragment
 import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
-import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.respository.extensions.launchAndCollect
-import com.qszx.respository.extensions.parseList
-import com.qszx.respository.extensions.toJsonString
-import com.qszx.utils.extensions.noQuickClick
+import com.ljp.module_base.ui.BaseBindingFragment
+import com.ljp.respository.extensions.launchAndCollect
+import com.ljp.respository.extensions.parseList
+import com.ljp.respository.extensions.toJsonString
+import com.ljp.lib_base.extensions.noQuickClick
 import dagger.hilt.android.AndroidEntryPoint
 
 

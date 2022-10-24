@@ -2,7 +2,7 @@ package com.ljp.wanandroid.dialog
 
 import android.content.Context
 import android.view.Gravity
-import com.qszx.dialog.base.BaseDialog
+import com.ljp.dialog.base.BaseDialog
 
 /*
  *@创建者       L_jp

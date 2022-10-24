@@ -73,6 +73,8 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    //lib
+    projectLib.each { k, v -> implementation v }
     //module
     projectModule.each { k, v -> implementation v }
     androidBaseDependencies.each { k, v -> implementation v }

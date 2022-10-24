@@ -23,7 +23,8 @@ import androidx.annotation.Px;
 import androidx.core.view.ViewCompat;
 import androidx.customview.widget.ViewDragHelper;
 
-import com.ljp.wanandroid.utils.LOG;
+
+import com.ljp.lib_base.utils.LOG;
 
 import java.util.Arrays;
 

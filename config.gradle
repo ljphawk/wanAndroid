@@ -19,18 +19,21 @@ ext {
             nav_version      : "2.4.2",
     ]
 
-    projectModule = [
+    projectLib = [
             lib_base            : project(":lib_base"),
             lib_respository     : project(":lib_respository"),
             lib_dialog          : project(":lib_dialog"),
-            lib_utils           : project(":lib_utils"),
             // Shape 框架：https://github.com/getActivity/ShapeView
             lib_shapeview       : project(":lib_shapeview"),
             //https://github.com/H07000223/FlycoTabLayout
             lib_flycoTabLayout  : project(":lib_flycoTabLayout"),
             lib_smoothnavigation: project(":lib_smoothnavigation"),
             lib_permission      : project(":lib_permission"),
-            lib_imageload      : project(":lib_imageload"),
+            lib_imageload       : project(":lib_imageload"),
+    ]
+
+    projectModule = [
+            module_base: project(":module_base")
     ]
 
     androidBaseDependencies = [
@@ -67,15 +70,13 @@ ext {
             stetho             : "com.facebook.stetho:stetho:1.6.0",
             stetho_okhttp      : "com.facebook.stetho:stetho-okhttp3:1.6.0",
             //https://github.com/guolindev/LitePal
-            guolindev_litepal            : "org.litepal.guolindev:core:3.2.2",
+            guolindev_litepal  : "org.litepal.guolindev:core:3.2.2",
     ]
 
     //依赖引入
     thirdDependencies = [
             //https://github.com/JessYanCoding/AndroidAutoSize
             autosize                     : "com.github.JessYanCoding:AndroidAutoSize:v1.2.1",
-            //https://github.com/orhanobut/logger
-            logger                       : "com.orhanobut:logger:2.2.0",
             //https://github.com/greenrobot/EventBus
             eventBus                     : "org.greenrobot:eventbus:3.3.1",
             //https://github.com/CymChad/BaseRecyclerViewAdapterHelper

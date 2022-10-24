@@ -3,18 +3,16 @@ package com.ljp.wanandroid.ui.fragment.test.tab1
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.Observer
 import com.ljp.wanandroid.databinding.FragmentTab1Binding
 import com.ljp.wanandroid.ui.activity.test.TestViewModel
-import com.ljp.wanandroid.utils.LOG
-import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.respository.extensions.launch
-import com.qszx.respository.extensions.launchAndCollect
-import com.qszx.respository.extensions.launchAndCollectIn
+import com.ljp.module_base.ui.BaseBindingFragment
+import com.ljp.respository.extensions.launch
+import com.ljp.respository.extensions.launchAndCollect
+import com.ljp.respository.extensions.launchAndCollectIn
+import com.ljp.respository.network.livadata.createObserver
+import com.ljp.lib_base.utils.LOG
 import dagger.hilt.android.AndroidEntryPoint
-import kotlin.math.log
 
 
 /*
@@ -50,9 +48,14 @@ class TabFragment1 : BaseBindingFragment<FragmentTab1Binding>() {
 
             }
         }
-//        testViewModel.homeHotArticle2.observe(this, Observer {
-//            setRequestText("请求方式4的结果数据: \n${it.toString()}")
-//        })
+        testViewModel.homeHotArticle2.observe(this, createObserver(
+            onSuccess = {
+                setRequestText("请求方式4的结果数据: \n$it")
+            },
+            onFailed = {
+
+            }
+        ))
     }
 
     private fun setRequestText(content: String?) {
@@ -75,7 +78,7 @@ class TabFragment1 : BaseBindingFragment<FragmentTab1Binding>() {
             requestFunction()
         }
         binding.btRequest4.setOnClickListener {
-//            testViewModel.homeHotArticle2Trigger.value = true
+            testViewModel.getHomeHotArticle2(1)
         }
 
     }

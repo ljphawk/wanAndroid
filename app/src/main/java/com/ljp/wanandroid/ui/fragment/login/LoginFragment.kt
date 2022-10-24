@@ -13,16 +13,16 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentLoginBinding
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setAnimStatusListener
-import com.qszx.respository.preference.UserPreference
-import com.ljp.wanandroid.utils.SpanUtils
-import com.qszx.base.ui.BaseBindingFragment
-import com.qszx.respository.extensions.launchAndCollect
-import com.qszx.utils.CommUtils
-import com.qszx.utils.extensions.contentHasValue
-import com.qszx.utils.extensions.getContent
-import com.qszx.utils.extensions.noQuickClick
-import com.qszx.utils.extensions.show
-import com.qszx.utils.showToast
+import com.ljp.respository.preference.UserPreference
+import com.ljp.module_base.ui.BaseBindingFragment
+import com.ljp.respository.extensions.launchAndCollect
+import com.ljp.lib_base.utils.CommUtils
+import com.ljp.lib_base.utils.SpanUtils
+import com.ljp.lib_base.extensions.contentHasValue
+import com.ljp.lib_base.extensions.getContent
+import com.ljp.lib_base.extensions.noQuickClick
+import com.ljp.lib_base.extensions.show
+import com.ljp.lib_base.utils.showToast
 import dagger.hilt.android.AndroidEntryPoint
 
 

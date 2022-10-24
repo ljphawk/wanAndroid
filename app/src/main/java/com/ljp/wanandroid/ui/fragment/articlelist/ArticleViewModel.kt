@@ -1,8 +1,8 @@
 package com.ljp.wanandroid.ui.fragment.articlelist
 
-import com.qszx.respository.network.repository.ArticleRepository
-import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.network.base.ApiResponse
+import com.ljp.respository.network.repository.ArticleRepository
+import com.ljp.module_base.ui.BaseViewModel
+import com.ljp.respository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 

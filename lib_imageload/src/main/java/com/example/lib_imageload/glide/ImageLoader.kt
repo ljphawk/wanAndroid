@@ -19,8 +19,7 @@ import com.bumptech.glide.load.resource.gif.GifOptions
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.example.lib_imageload.R
-import com.qszx.utils.extensions.imageUrlIsGif
-import com.qszx.utils.extensions.uiThread
+import com.ljp.lib_base.extensions.imageUrlIsGif
 import java.lang.ref.WeakReference
 import com.bumptech.glide.request.target.Target
 
@@ -161,7 +160,7 @@ class ImageRequestListener(
         target: Target<Drawable>?,
         isFirstResource: Boolean
     ): Boolean {
-        uiThread {
+        com.ljp.lib_base.extensions.uiThread {
             listener.onLoadingFailed(imageUrl, imageView, e?.cause)
         }
         return false
@@ -175,7 +174,7 @@ class ImageRequestListener(
         isFirstResource: Boolean
     ): Boolean {
         //一般下载图片到本地用submit形式操作,并做了监听,所以把本地文件返回给调用者,自行做显示的操作等其他操作逻辑
-        uiThread {
+        com.ljp.lib_base.extensions.uiThread {
             listener.onLoadingComplete(imageUrl, imageView, resource)
         }
         return false

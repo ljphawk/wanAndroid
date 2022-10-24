@@ -1,0 +1,11 @@
+apply from: "../basic.gradle"
+
+dependencies {
+    compileOnly projectLib.lib_dialog
+    compileOnly projectLib.lib_base
+    compileOnly projectLib.lib_smoothnavigation
+    viewBindKtx.each { k, v -> api v }
+    implementation googleDependencies.recyclerview
+    implementation thirdDependencies.baseRecyclerViewAdapterHelper
+    implementation thirdDependencies.immersionbar
+}

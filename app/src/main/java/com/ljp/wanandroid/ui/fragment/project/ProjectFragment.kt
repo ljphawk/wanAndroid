@@ -1,7 +1,7 @@
 package com.ljp.wanandroid.ui.fragment.project
 
 import com.ljp.wanandroid.databinding.FragmentProjectBinding
-import com.qszx.base.ui.BaseLazyBindingFragment
+import com.ljp.module_base.ui.BaseLazyBindingFragment
 
 
 /*

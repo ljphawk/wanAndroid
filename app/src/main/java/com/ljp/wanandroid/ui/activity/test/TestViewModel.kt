@@ -1,9 +1,11 @@
 package com.ljp.wanandroid.ui.activity.test
 
-import com.qszx.respository.data.ArticleBean
-import com.qszx.respository.network.repository.TestRepository
-import com.qszx.base.ui.BaseViewModel
-import com.qszx.respository.network.base.ApiResponse
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Transformations
+import com.ljp.respository.data.ArticleBean
+import com.ljp.respository.network.repository.TestRepository
+import com.ljp.module_base.ui.BaseViewModel
+import com.ljp.respository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -40,9 +42,16 @@ class TestViewModel @Inject constructor(private val testRepository: TestReposito
 
     suspend fun getHomeBannerList() = testRepository.getHomeBannerList()
 
-//    val homeHotArticle2Trigger = MutableLiveData<Boolean>()
-//    val homeHotArticle2 = Transformations.switchMap(homeHotArticle2Trigger) {
-//        testRepository.getHomeHotArticle2()
-//    }
+    /**
+     * liveData请求数据
+     */
+    private val homeHotArticle2Trigger = MutableLiveData<Int>()
+    fun getHomeHotArticle2(page: Int) {
+        homeHotArticle2Trigger.value = page
+    }
+
+    val homeHotArticle2 = Transformations.switchMap(homeHotArticle2Trigger) {
+        testRepository.getHomeHotArticle2(it)
+    }
 
 }
