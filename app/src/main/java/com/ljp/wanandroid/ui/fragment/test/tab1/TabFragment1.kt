@@ -7,10 +7,10 @@ import androidx.lifecycle.Lifecycle
 import com.ljp.wanandroid.databinding.FragmentTab1Binding
 import com.ljp.wanandroid.ui.activity.test.TestViewModel
 import com.ljp.module_base.ui.BaseBindingFragment
-import com.ljp.respository.extensions.launch
-import com.ljp.respository.extensions.launchAndCollect
-import com.ljp.respository.extensions.launchAndCollectIn
-import com.ljp.respository.network.livadata.createObserver
+import com.ljp.repository.extensions.launch
+import com.ljp.repository.extensions.launchAndCollect
+import com.ljp.repository.extensions.launchAndCollectIn
+import com.ljp.repository.network.livadata.createObserver
 import com.ljp.lib_base.utils.LOG
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -13,9 +13,9 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentLoginBinding
 import com.ljp.wanandroid.extensions.addTextChangedListener
 import com.ljp.wanandroid.extensions.setAnimStatusListener
-import com.ljp.respository.preference.UserPreference
+import com.ljp.repository.preference.UserPreference
 import com.ljp.module_base.ui.BaseBindingFragment
-import com.ljp.respository.extensions.launchAndCollect
+import com.ljp.repository.extensions.launchAndCollect
 import com.ljp.lib_base.utils.CommUtils
 import com.ljp.lib_base.utils.SpanUtils
 import com.ljp.lib_base.extensions.contentHasValue

@@ -2,6 +2,7 @@ package com.ljp.lib_base.app
 
 import android.app.Application
 import android.content.Context
+import com.ljp.lib_base.delegate.ApplicationDelegate
 
 
 /*

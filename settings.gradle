@@ -1,11 +1,12 @@
 rootProject.name = "wanAndroid"
 include ':app'
 include ':lib_base'
-include ':lib_respository'
+include ':lib_repository'
 include ':lib_dialog'
 include ':lib_shapeview'
 include ':lib_flycoTabLayout'
 include ':lib_smoothnavigation'
 include ':lib_permission'
 include ':lib_imageload'
+
 include ':module_base'

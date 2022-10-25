@@ -21,7 +21,7 @@ ext {
 
     projectLib = [
             lib_base            : project(":lib_base"),
-            lib_respository     : project(":lib_respository"),
+            lib_repository      : project(":lib_repository"),
             lib_dialog          : project(":lib_dialog"),
             // Shape 框架：https://github.com/getActivity/ShapeView
             lib_shapeview       : project(":lib_shapeview"),

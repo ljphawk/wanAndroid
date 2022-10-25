@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.ui.fragment.login
 
-import com.ljp.respository.network.repository.UserRepository
+import com.ljp.repository.network.repository.UserRepository
 import com.ljp.module_base.ui.BaseViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject

@@ -3,11 +3,11 @@ package com.ljp.wanandroid.ui.fragment.hot
 import android.text.Html
 import androidx.lifecycle.LifecycleOwner
 import com.example.lib_imageload.glide.loadImage
-import com.ljp.respository.constant.UrlConstant
+import com.ljp.repository.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
-import com.ljp.respository.data.ArticleBean
-import com.ljp.respository.data.HomeBannerBean
+import com.ljp.repository.data.ArticleBean
+import com.ljp.repository.data.HomeBannerBean
 import com.ljp.wanandroid.ui.fragment.home.HomeBannerAdapter
 import com.ljp.lib_base.utils.RegexUtils
 import com.ljp.lib_base.extensions.contentHasValue

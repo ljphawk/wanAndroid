@@ -4,7 +4,7 @@ import android.app.Application
 import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.GET_META_DATA
-import com.ljp.lib_base.app.ApplicationDelegate
+import com.ljp.lib_base.delegate.ApplicationDelegate
 
 
 /*

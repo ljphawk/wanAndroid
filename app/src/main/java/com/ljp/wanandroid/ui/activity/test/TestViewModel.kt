@@ -2,10 +2,10 @@ package com.ljp.wanandroid.ui.activity.test
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.ljp.respository.data.ArticleBean
-import com.ljp.respository.network.repository.TestRepository
+import com.ljp.repository.data.ArticleBean
+import com.ljp.repository.network.repository.TestRepository
 import com.ljp.module_base.ui.BaseViewModel
-import com.ljp.respository.network.base.ApiResponse
+import com.ljp.repository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
