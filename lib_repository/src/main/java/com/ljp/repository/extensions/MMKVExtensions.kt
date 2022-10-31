@@ -1,7 +1,7 @@
 package com.ljp.repository.extensions
 
 import android.os.Parcelable
-import com.ljp.repository.preference.base.BasePreference
+import com.ljp.repository.preference.BasePreference
 import kotlin.properties.ReadWriteProperty
 import kotlin.reflect.KProperty
 

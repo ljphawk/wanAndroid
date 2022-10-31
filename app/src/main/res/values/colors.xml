@@ -1,16 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#FFBB86FC</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
-    <color name="c_2C364E">#2C364E</color>
-    <color name="transparent">#00000000</color>
-    <color name="c_F5F7F7">#F5F7F7</color>
-    <color name="c_E2E5EC">#E2E5EC</color>
-    <color name="c_F2F2F2">#F2F2F2</color>
-    <color name="c_757575">#757575</color>
-    <color name="c_F4F6FA">#F4F6FA</color>
-    <color name="c_8F97A9">#8F97A9</color>
-    <color name="c_999999">#999999</color>
 
 </resources>

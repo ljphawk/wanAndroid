@@ -17,10 +17,9 @@ import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
 import com.ljp.wanandroid.eventbus.AppEvent
 import com.ljp.wanandroid.eventbus.CollectEvent
-import com.ljp.repository.data.ArticleBean
-import com.ljp.repository.data.ArticleListBean
-import com.ljp.repository.data.HomeBannerBean
-import com.ljp.repository.preference.UserPreference
+import com.ljp.module_base.network.data.ArticleBean
+import com.ljp.module_base.network.data.ArticleListBean
+import com.ljp.module_base.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.hot.binding
 import com.ljp.wanandroid.ui.fragment.search.SearchViewModel
 import com.ljp.wanandroid.ui.fragment.webview.WebFragment
@@ -29,6 +28,7 @@ import com.ljp.repository.extensions.launchAndCollect
 import com.ljp.repository.network.base.ApiResponse
 import com.ljp.lib_base.extensions.getBundleParam
 import com.ljp.lib_base.extensions.hasContent
+import com.ljp.module_base.network.data.HomeBannerBean
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.flow

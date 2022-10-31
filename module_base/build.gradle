@@ -1,11 +1,17 @@
 apply from: "../basic.gradle"
+apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-parcelize'
+apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
     compileOnly projectLib.lib_dialog
     compileOnly projectLib.lib_base
     compileOnly projectLib.lib_smoothnavigation
+    compileOnly projectLib.lib_repository
     viewBindKtx.each { k, v -> api v }
     implementation googleDependencies.recyclerview
     implementation thirdDependencies.baseRecyclerViewAdapterHelper
     implementation thirdDependencies.immersionbar
+    api googleDependencies.hilt_android
+    kapt thirdDependenciesKapt.hilt_android_compiler
 }

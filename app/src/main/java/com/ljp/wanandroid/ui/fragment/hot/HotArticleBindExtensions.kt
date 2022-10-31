@@ -6,12 +6,12 @@ import com.example.lib_imageload.glide.loadImage
 import com.ljp.repository.constant.UrlConstant
 import com.ljp.wanandroid.databinding.ItemHotArticleHeadViewBinding
 import com.ljp.wanandroid.databinding.ItemHotArticleViewBinding
-import com.ljp.repository.data.ArticleBean
-import com.ljp.repository.data.HomeBannerBean
+import com.ljp.module_base.network.data.ArticleBean
 import com.ljp.wanandroid.ui.fragment.home.HomeBannerAdapter
 import com.ljp.lib_base.utils.RegexUtils
 import com.ljp.lib_base.extensions.contentHasValue
 import com.ljp.lib_base.extensions.show
+import com.ljp.module_base.network.data.HomeBannerBean
 
 
 /*

@@ -19,7 +19,7 @@
             android:layout_height="30dp"
             android:layout_marginStart="12dp"
             android:layout_weight="1"
-            android:background="@drawable/shape_login_input_bg"
+            android:background="@drawable/login_shape_login_input_bg"
             android:drawableStart="@drawable/icon_search"
             android:drawablePadding="6dp"
             android:hint="请输入搜索内容"

@@ -9,10 +9,8 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.FragmentSearchBinding
 import com.ljp.wanandroid.databinding.ItemSearchHotKeyBinding
 import com.ljp.repository.dao.SearchHistoryDao
-import com.ljp.wanandroid.extensions.addTextChangedListener
-import com.ljp.wanandroid.extensions.setTextAndSelection
 import com.ljp.repository.data.SearchHotKeyBean
-import com.ljp.repository.preference.ConfigPreference
+import com.ljp.module_base.preference.ConfigPreference
 import com.ljp.wanandroid.ui.fragment.articlelist.ArticleListFragment
 import com.ljp.wanandroid.ui.fragment.articlelist.ArticleListParams
 import com.ljp.module_base.ui.BaseBindingFragment

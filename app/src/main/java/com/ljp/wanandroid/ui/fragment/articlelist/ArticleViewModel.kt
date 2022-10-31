@@ -1,6 +1,6 @@
 package com.ljp.wanandroid.ui.fragment.articlelist
 
-import com.ljp.repository.network.repository.ArticleRepository
+import com.ljp.module_base.network.repository.ArticleRepository
 import com.ljp.module_base.ui.BaseViewModel
 import com.ljp.repository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel

@@ -9,7 +9,7 @@ import com.ljp.wanandroid.ui.fragment.navigation.NavigationFragment
 import com.ljp.wanandroid.ui.fragment.project.ProjectFragment
 import com.ljp.wanandroid.ui.fragment.question.QuestionFragment
 import com.ljp.module_base.ui.BaseViewModel
-import com.ljp.repository.preference.UserPreference
+import com.ljp.module_base.preference.UserPreference
 import java.util.ArrayList
 
 

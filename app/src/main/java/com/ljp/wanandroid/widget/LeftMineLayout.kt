@@ -11,7 +11,7 @@ import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.ItemMineRvBinding
 import com.ljp.wanandroid.databinding.LayoutLeftMineBinding
 import com.ljp.wanandroid.data.MineItemBean
-import com.ljp.repository.preference.UserPreference
+import com.ljp.module_base.preference.UserPreference
 import com.ljp.module_base.ui.BaseBindingLayout
 import com.ljp.lib_base.utils.showToast
 

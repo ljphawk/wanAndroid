@@ -1,12 +1,9 @@
 apply from: "../basic.gradle"
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-parcelize'
-apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
     lifecycleDependencies.each { k, v -> implementation v }
     networkDependencies.each { k, v -> api v }
-    implementation googleDependencies.hilt_android
-    kapt thirdDependenciesKapt.hilt_android_compiler
     compileOnly projectLib.lib_base
 }

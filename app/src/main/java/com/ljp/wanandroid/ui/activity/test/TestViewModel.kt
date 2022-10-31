@@ -2,8 +2,8 @@ package com.ljp.wanandroid.ui.activity.test
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Transformations
-import com.ljp.repository.data.ArticleBean
-import com.ljp.repository.network.repository.TestRepository
+import com.ljp.module_base.network.data.ArticleBean
+import com.ljp.module_base.network.repository.TestRepository
 import com.ljp.module_base.ui.BaseViewModel
 import com.ljp.repository.network.base.ApiResponse
 import dagger.hilt.android.lifecycle.HiltViewModel

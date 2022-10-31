@@ -2,9 +2,9 @@ package com.ljp.wanandroid.ui.fragment.home
 
 import com.dylanc.viewbinding.getBinding
 import com.example.lib_imageload.glide.loadImage
+import com.ljp.module_base.network.data.HomeBannerBean
 import com.ljp.wanandroid.R
 import com.ljp.wanandroid.databinding.ItemHomeBannerBinding
-import com.ljp.repository.data.HomeBannerBean
 import com.zhpan.bannerview.BaseBannerAdapter
 import com.zhpan.bannerview.BaseViewHolder
 

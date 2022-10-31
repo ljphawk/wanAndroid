@@ -9,8 +9,8 @@ import com.example.lib_imageload.glide.loadImageCircleCrop
 import com.ljp.wanandroid.constant.Router
 import com.ljp.wanandroid.databinding.FragmentHomeBinding
 import com.ljp.repository.data.SearchHotKeyBean
-import com.ljp.repository.preference.ConfigPreference
-import com.ljp.repository.preference.UserPreference
+import com.ljp.module_base.preference.ConfigPreference
+import com.ljp.module_base.preference.UserPreference
 import com.ljp.wanandroid.ui.fragment.main.MainFragment
 import com.ljp.wanandroid.ui.fragment.search.SearchFragment
 import com.ljp.wanandroid.ui.fragment.search.SearchViewModel

@@ -33,7 +33,8 @@ ext {
     ]
 
     projectModule = [
-            module_base: project(":module_base")
+            module_base: project(":module_base"),
+            module_login: project(":module_login")
     ]
 
     androidBaseDependencies = [
