@@ -1,6 +1,5 @@
 package com.ljp.module_base.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,7 +9,9 @@ import androidx.viewbinding.ViewBinding
 import com.dylanc.viewbinding.base.ViewBindingUtil
 import com.gyf.immersionbar.ImmersionBar
 import com.ljp.lib_base.callback.IUiView
+import com.ljp.lib_base.utils.CommUtils
 import com.ljp.module_base.dialog.LoadingDialog
+import com.therouter.TheRouter
 
 
 /*
@@ -25,13 +26,10 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
     private val loadingDialog by lazy { LoadingDialog.Builder(requireContext()) }
 
     protected lateinit var immersionBar: ImmersionBar
-    var routerActivity: RouterActivity<*>? = null
 
-    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is RouterActivity<*>) {
-            routerActivity = context
-        }
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        TheRouter.inject(this)
     }
 
     override fun onCreateView(
@@ -99,15 +97,11 @@ abstract class BaseBindingFragment<VB : ViewBinding> : Fragment(), IUiView {
         loadingDialog.dismiss()
     }
 
-    fun finish(){
-        routerActivity?.popBackStack()
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
 
-        requireActivity()?.let {
-            com.ljp.lib_base.utils.CommUtils.hideSoftKeyBoard(it)
+        activity?.let {
+            CommUtils.hideSoftKeyBoard(it)
         }
         _binding = null
     }

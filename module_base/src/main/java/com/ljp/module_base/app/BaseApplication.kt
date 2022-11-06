@@ -5,6 +5,8 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.content.pm.PackageManager.GET_META_DATA
 import com.ljp.lib_base.delegate.ApplicationDelegate
+import com.ljp.module_base.BuildConfig
+import com.therouter.TheRouter
 
 
 /*
@@ -22,9 +24,10 @@ open class BaseApplication : Application() {
     private val appDelegateList = mutableListOf<ApplicationDelegate>()
 
     override fun attachBaseContext(base: Context) {
+        TheRouter.isDebug = BuildConfig.DEBUG;
         super.attachBaseContext(base)
-        findApplicationDelegate(base);
 
+        findApplicationDelegate(base);
         appDelegateList.forEach {
             it.attachBaseContext(this, base)
         }
@@ -33,7 +36,6 @@ open class BaseApplication : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        
         appDelegateList.forEach {
             it.onCreate(this)
         }

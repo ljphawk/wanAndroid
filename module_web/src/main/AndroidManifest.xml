@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.ljp.module_web">
+
+
+
+    <application>
+        <meta-data
+            android:name="com.ljp.module_web.app.WebApplicationDelegate"
+            android:value="ApplicationDelegate" />
+        <activity android:name=".activity.WebViewActivity"
+            android:screenOrientation="portrait"/>
+    </application>
+</manifest>

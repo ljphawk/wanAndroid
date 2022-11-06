@@ -3,4 +3,5 @@ apply from: "../basic.gradle"
 dependencies {
     //https://github.com/orhanobut/logger
     implementation "com.orhanobut:logger:2.2.0"
+    implementation googleDependencies.material
 }

@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.ljp.wanandroid.ui.fragment.test.tab1.TabFragment1
+import com.ljp.wanandroid.ui.fragment.test.TabFragment1
 import com.ljp.wanandroid.ui.fragment.test.TabFragment2
 import com.ljp.wanandroid.ui.fragment.test.TabFragment3
 import com.google.android.material.tabs.TabLayoutMediator

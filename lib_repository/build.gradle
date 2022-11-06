@@ -1,6 +1,4 @@
 apply from: "../basic.gradle"
-apply plugin: 'kotlin-kapt'
-apply plugin: 'kotlin-parcelize'
 
 dependencies {
     lifecycleDependencies.each { k, v -> implementation v }

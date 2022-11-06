@@ -1,0 +1,9 @@
+apply from: "../basic.gradle"
+
+dependencies {
+    compileOnly projectLib.lib_base
+    compileOnly projectModule.module_base
+    //https://x5.tencent.com/docs/access.html
+    implementation "com.tencent.tbs:tbssdk:44199"
+    kapt thirdDependenciesKapt.the_router_compiler
+}

@@ -9,6 +9,7 @@ import com.gyf.immersionbar.ImmersionBar
 import com.ljp.lib_base.callback.IUiView
 import com.ljp.module_base.dialog.LoadingDialog
 import com.ljp.module_base.manager.ActivityManager
+import com.therouter.TheRouter
 
 /*
  *@创建者       L_jp
@@ -35,6 +36,7 @@ abstract class BaseBindingActivity<VB : ViewBinding> : AppCompatActivity(), IUiV
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        TheRouter.inject(this)
 
         ActivityManager.addActivity(this)
 

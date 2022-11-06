@@ -1,0 +1,30 @@
+[
+  {
+    "path": "http://ljp.com/app/web",
+    "className": "com.ljp.module_web.activity.WebViewActivity",
+    "action": "",
+    "description": "WebViewActivity页面",
+    "params": {}
+  },
+  {
+    "path": "http://ljp.com/app/mine",
+    "className": "com.ljp.module_mine.ui.fragment.mine.MineFragment",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "http://ljp.com/app/login",
+    "className": "com.ljp.module_mine.ui.activity.login.LoginActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  },
+  {
+    "path": "http://ljp.com/app/search",
+    "className": "com.ljp.module_home.ui.fragment.search.SearchActivity",
+    "action": "",
+    "description": "",
+    "params": {}
+  }
+]
