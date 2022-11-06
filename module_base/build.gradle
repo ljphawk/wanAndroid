@@ -2,9 +2,7 @@ apply from: "../basic.gradle"
 apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
-    compileOnly projectLib.lib_dialog
-    compileOnly projectLib.lib_base
-    compileOnly projectLib.lib_repository
+    projectLib.each { k, v -> api v }
     viewBindKtx.each { k, v -> api v }
     googleDependencies.each { k, v -> api v }
     thirdDependencies.each { k, v -> api v }

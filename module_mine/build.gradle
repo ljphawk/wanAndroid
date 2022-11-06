@@ -2,10 +2,6 @@ apply from: "../basic.gradle"
 apply plugin: 'dagger.hilt.android.plugin'
 
 dependencies {
-    compileOnly projectLib.lib_base
-    compileOnly projectLib.lib_shapeview
-    compileOnly projectLib.lib_repository
-    compileOnly projectLib.lib_imageload
     compileOnly projectModule.module_base
     kapt thirdDependenciesKapt.the_router_compiler
     implementation googleDependencies.hilt_android
